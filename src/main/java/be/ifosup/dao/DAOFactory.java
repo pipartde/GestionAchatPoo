@@ -1,7 +1,6 @@
 package be.ifosup.dao;
 
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,6 +27,7 @@ public class DAOFactory {
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }
+        // ATTENTION A NE PAS OUBLIER DE CHANGER LE NOM DE LA BDD DANS L'URL
         DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat", "root", "");
         return instance;
     }
