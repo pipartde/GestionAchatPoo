@@ -1,8 +1,8 @@
 package be.ifosup.dao;
 
 
-import be.ifosup.magasins.MagasinsDAO;
-import be.ifosup.magasins.MagasinsDaoImpl;
+import be.ifosup.magasins.MagasinDAO;
+import be.ifosup.magasins.MagasinDaoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,7 +43,7 @@ public class DAOFactory {
 
     // Récupérer les données
 
-    public MagasinsDAO getMagasinsDAO(){
-        return new MagasinsDaoImpl(this);
+    public MagasinDAO getMagasinsDAO(){
+        return new MagasinDaoImpl(this);
     }
 }

@@ -55,11 +55,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `magasins`
+-- Structure de la table `magasin`
 --
 
-DROP TABLE IF EXISTS `magasins`;
-CREATE TABLE IF NOT EXISTS `magasins` (
+DROP TABLE IF EXISTS `magasin`;
+CREATE TABLE IF NOT EXISTS `magasin` (
   `magId` int(11) NOT NULL AUTO_INCREMENT,
   `magNom` varchar(60) NOT NULL,
   PRIMARY KEY (`magId`)
