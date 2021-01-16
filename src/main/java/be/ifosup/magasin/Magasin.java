@@ -3,33 +3,33 @@ package be.ifosup.magasin;
 public class Magasin {
 
     // Attributs
-    private Long id;
-    private String nomMag;
+    private Long magId;
+    private String magNom;
 
     // constructeur
-    public Magasin(Long id, String nomMag) {
-        this.id = id;
-        this.nomMag = nomMag;
+    public Magasin(Long magId, String magNom) {
+        this.magId = magId;
+        this.magNom = magNom;
     }
 
-    public Magasin(String nomMag) {
-        this.nomMag = nomMag;
+    public Magasin(String magNom) {
+        this.magNom = magNom;
     }
 
     // Getter / setter
-    public Long getId() {
-        return id;
+    public Long getMagId() {
+        return magId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMagId(Long magId) {
+        this.magId = magId;
     }
 
-    public String getNomMag() {
-        return nomMag;
+    public String getMagNom() {
+        return magNom;
     }
 
-    public void setNomMag(String nomMag) {
-        this.nomMag = nomMag;
+    public void setMagNom(String magNom) {
+        this.magNom = magNom;
     }
 }

@@ -12,7 +12,7 @@ public class MagasinDaoImpl implements MagasinDAO {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Statement statement = null;
-    ResultSet resulat = null;
+    ResultSet resultat = null;
 
     public MagasinDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -24,7 +24,7 @@ public class MagasinDaoImpl implements MagasinDAO {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("INSERT INTO magasins (magNom) VALUES (?);");
 
-            preparedStatement.setString(1, magasin.getNomMag());
+            preparedStatement.setString(1, magasin.getMagNom());
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -33,12 +33,12 @@ public class MagasinDaoImpl implements MagasinDAO {
     }
 
     @Override
-    public void supprimer(Long id) {
+    public void supprimer(Long magId) {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("DELETE FROM magasins WHERE magId = ?;");
 
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, magId);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -56,13 +56,13 @@ public class MagasinDaoImpl implements MagasinDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resulat = statement.executeQuery("SELECT * FROM magasins;");
+        resultat = statement.executeQuery("SELECT * FROM magasins;");
 
-        while( resulat.next()) {
-            Long id = resulat.getLong("magId");
-            String magNom = resulat.getString("magNom");
+        while( resultat.next()) {
+            Long magId = resultat.getLong("magId");
+            String magNom = resultat.getString("magNom");
 
-            Magasin magasin = new Magasin(id, magNom);
+            Magasin magasin = new Magasin(magId, magNom);
 
             magasins.add(magasin);
         }

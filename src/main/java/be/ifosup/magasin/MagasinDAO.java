@@ -7,8 +7,8 @@ import java.util.List;
 public interface MagasinDAO {
 
     void ajouter(Magasin magasin);
-    void supprimer(Long id);
-    void modifier(Long id);
+    void supprimer(Long magId);
+    void modifier(Long magId);
     List<Magasin> liste() throws SQLException;
 
 }
