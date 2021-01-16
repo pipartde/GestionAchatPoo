@@ -1,8 +1,8 @@
 package be.ifosup.dao;
 
 
-import be.ifosup.magasins.MagasinDAO;
-import be.ifosup.magasins.MagasinDaoImpl;
+import be.ifosup.magasin.MagasinDAO;
+import be.ifosup.magasin.MagasinDaoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

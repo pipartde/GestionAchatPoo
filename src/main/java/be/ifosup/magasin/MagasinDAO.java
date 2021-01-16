@@ -1,4 +1,4 @@
-package be.ifosup.magasins;
+package be.ifosup.magasin;
 
 import java.sql.SQLException;
 import java.util.List;

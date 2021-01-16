@@ -1,4 +1,4 @@
-package be.ifosup.magasins;
+package be.ifosup.magasin;
 
 import be.ifosup.dao.DAOFactory;
 
