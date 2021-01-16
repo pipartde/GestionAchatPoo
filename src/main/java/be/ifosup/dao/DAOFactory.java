@@ -35,7 +35,7 @@ public class DAOFactory {
             e.printStackTrace();
         }
         // ATTENTION A NE PAS OUBLIER DE CHANGER LE NOM DE LA BDD DANS L'URL
-        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat", "root", "");
+        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat?serverTimezone=CET", "root", "");
         return instance;
     }
 
