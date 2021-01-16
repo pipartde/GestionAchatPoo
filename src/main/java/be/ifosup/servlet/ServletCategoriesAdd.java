@@ -1,8 +1,8 @@
 package be.ifosup.servlet;
 
+import be.ifosup.dao.DAOFactory;
 import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;
-import be.ifosup.dao.DAOFactory;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 @WebServlet(name = "ServletCategoriesAdd", urlPatterns = {"/add-categorie"})
 public class ServletCategoriesAdd extends HttpServlet {
-
     private CategoriesDAO categoriesDAO;
 
     public void init() throws ServletException {
