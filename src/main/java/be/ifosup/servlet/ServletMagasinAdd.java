@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletTodoAdd", urlPatterns = {"/add-todo"})
+@WebServlet(name = "ServletMagasinAdd", urlPatterns = {"/add-magasin"})
 public class ServletMagasinAdd extends HttpServlet {
     private MagasinDAO magasinDAO;
     public void init() throws ServletException {
