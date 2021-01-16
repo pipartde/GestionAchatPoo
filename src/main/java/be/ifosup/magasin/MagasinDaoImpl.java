@@ -24,7 +24,7 @@ public class MagasinDaoImpl implements MagasinDAO {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("INSERT INTO magasins (magNom) VALUES (?);");
 
-            preparedStatement.setString(1, magasin.getNomMag());
+            preparedStatement.setString(1, magasin.getMagNom());
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -33,12 +33,12 @@ public class MagasinDaoImpl implements MagasinDAO {
     }
 
     @Override
-    public void supprimer(Long id) {
+    public void supprimer(Long magId) {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("DELETE FROM magasins WHERE magId = ?;");
 
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, magId);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -59,10 +59,10 @@ public class MagasinDaoImpl implements MagasinDAO {
         resultat = statement.executeQuery("SELECT * FROM magasins;");
 
         while( resultat.next()) {
-            Long id = resultat.getLong("magId");
+            Long magId = resultat.getLong("magId");
             String magNom = resultat.getString("magNom");
 
-            Magasin magasin = new Magasin(id, magNom);
+            Magasin magasin = new Magasin(magId, magNom);
 
             magasins.add(magasin);
         }
