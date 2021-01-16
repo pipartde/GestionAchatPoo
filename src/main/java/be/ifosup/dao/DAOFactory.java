@@ -32,13 +32,13 @@ public class DAOFactory {
         return instance;
     }
 
-    // Recuperer la connexion
+    // Récuperer la connexion
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     }
 
-    // Recuperer les données
+    // Récuperer les données
 
 
 }
