@@ -26,7 +26,7 @@ public class ServletMagasinAdd extends HttpServlet {
         // récupération des valeurs du formulaire
         String magNom = request.getParameter("magNom");
 
-        // ajout du todo dans la BD
+        // ajout du magasin dans la BD
         magasinDAO.ajouter( new Magasin(magNom));
 
         // redirection
