@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletMesure", value = "/ServletMesure")
+@WebServlet(name = "ServletMesure", urlPatterns = "/mesures")
 
 public class ServletMesure extends HttpServlet {
     private MesureDAO mesureDAO;
@@ -27,7 +27,7 @@ public class ServletMesure extends HttpServlet {
             e.printStackTrace();
             throw new ServletException(e);
         }
-        request.getRequestDispatcher("/vues/mesure.jsp").forward(request, response);
+        request.getRequestDispatcher("/vues/mesures.jsp").forward(request, response);
     }
 
     @Override

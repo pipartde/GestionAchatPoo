@@ -5,13 +5,11 @@
         <li>
            <a href="magasins">Magasins</a>
         </li>
-
         <li>
             <a href="categories">Catégories</a>
         </li>
-
         <li>
-            <a href="mesure">Mesures</a>
+            <a href="mesures">Mesures</a>
         </li>
     </ul>
 </nav>
