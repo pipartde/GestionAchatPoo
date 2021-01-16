@@ -28,7 +28,7 @@ public class DAOFactory {
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }
-        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/poo", "root", "");
+        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat", "root", "");
         return instance;
     }
 
