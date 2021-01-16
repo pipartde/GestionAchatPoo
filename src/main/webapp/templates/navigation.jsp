@@ -6,5 +6,8 @@
            <a href="magasins">Magasins</a>
             <a href="categories">Catégories</a>
         </li>
+        <li>
+            <a href="mesure">Mesures</a>
+        </li>
     </ul>
 </nav>
