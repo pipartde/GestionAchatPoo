@@ -3,6 +3,8 @@ package be.ifosup.dao;
 
 import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.magasin.MagasinDaoImpl;
+import be.ifosup.mesure.MesureDAO;
+import be.ifosup.mesure.MesureDaoImpl;
 import be.ifosup.produit.ProduitDAO;
 import be.ifosup.produit.ProduitDaoImpl;
 
@@ -50,5 +52,8 @@ public class DAOFactory {
     }
     public ProduitDAO getProduitsDAO(){
         return new ProduitDaoImpl(this);
+    }
+    public MesureDAO getMesuresDAO(){
+        return new MesureDaoImpl(this);
     }
 }
