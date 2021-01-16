@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MesureDaoImpl implements MesureDAO{
+public class MesureDaoImpl implements MesureDAO {
     private final DAOFactory daoFactory;
 
     Connection connection = null;
