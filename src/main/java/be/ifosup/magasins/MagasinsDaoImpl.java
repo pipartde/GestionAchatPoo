@@ -22,10 +22,9 @@ public class MagasinsDaoImpl implements MagasinsDAO {
     public void ajouter(Magasins magasins) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO todos (description, FK_cat) VALUES (?,?);");
+            preparedStatement = connection.prepareStatement("INSERT INTO magasins (magNom) VALUES (?);");
 
             preparedStatement.setString(1, magasins.getType());
-            preparedStatement.setString(2, magasins.getCategorie());
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -37,7 +36,7 @@ public class MagasinsDaoImpl implements MagasinsDAO {
     public void supprimer(Long id) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("DELETE FROM todos WHERE PK_todo = ?;");
+            preparedStatement = connection.prepareStatement("DELETE FROM magasins WHERE magId = ?;");
 
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
