@@ -18,7 +18,7 @@
                 <tr>
                     <td>${magasin.magNom}</td>
                     <td>
-                        <a href="supMagasin?id=${magasin.id}">
+                        <a href="supMagasin?id=${magasin.magId}">
                             supprimer
                         </a>
                     </td>
