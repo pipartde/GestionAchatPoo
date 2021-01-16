@@ -12,7 +12,7 @@ public class MagasinDaoImpl implements MagasinDAO {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Statement statement = null;
-    ResultSet resulat = null;
+    ResultSet resultat = null;
 
     public MagasinDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -56,11 +56,11 @@ public class MagasinDaoImpl implements MagasinDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resulat = statement.executeQuery("SELECT * FROM magasins;");
+        resultat = statement.executeQuery("SELECT * FROM magasins;");
 
-        while( resulat.next()) {
-            Long id = resulat.getLong("magId");
-            String magNom = resulat.getString("magNom");
+        while( resultat.next()) {
+            Long id = resultat.getLong("magId");
+            String magNom = resultat.getString("magNom");
 
             Magasin magasin = new Magasin(id, magNom);
 
