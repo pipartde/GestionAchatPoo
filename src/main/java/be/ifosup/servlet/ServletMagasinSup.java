@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletTodoSup", urlPatterns = {"/supTodo"})
+@WebServlet(name = "ServletMagasinSup", urlPatterns = {"/supMagasin"})
 public class ServletMagasinSup extends HttpServlet {
 
     private MagasinDAO magasinDAO;
