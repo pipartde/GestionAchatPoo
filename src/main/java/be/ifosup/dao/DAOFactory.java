@@ -1,6 +1,8 @@
 package be.ifosup.dao;
 
 
+import be.ifosup.categories.CategoriesDAO;
+import be.ifosup.categories.CategoriesDAOImpl;
 import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.magasin.MagasinDaoImpl;
 import be.ifosup.mesure.MesureDAO;
@@ -56,4 +58,10 @@ public class DAOFactory {
     public MesureDAO getMesuresDAO(){
         return new MesureDaoImpl(this);
     }
+
+
+    public CategoriesDAO getCategoriesDAO() {
+        return new CategoriesDAOImpl(this);
+    }
 }
+
