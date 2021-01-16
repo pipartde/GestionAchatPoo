@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ServletProduitAdd", value = "/ServletProduitAdd", urlPatterns = {"/add-produit"})
+@WebServlet(name = "ServletProduitAdd", urlPatterns = {"/add-produit"})
 public class ServletProduitAdd extends HttpServlet {
     private ProduitDAO produitDAO;
     public void init() throws ServletException {
