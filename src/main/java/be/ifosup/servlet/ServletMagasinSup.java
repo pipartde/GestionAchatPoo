@@ -28,10 +28,10 @@ public class ServletMagasinSup extends HttpServlet {
         magasinDAO.supprimer(Long.parseLong(id));
         // récupération des magasins et retour a la bonne vue
         try {
-            request.setAttribute("todos", magasinDAO.liste());
+            request.setAttribute("magasins", magasinDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("/vues/todos.jsp").forward(request,response);
+        request.getRequestDispatcher("/vues/magasins.jsp").forward(request,response);
     }
 }
