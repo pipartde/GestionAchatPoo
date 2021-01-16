@@ -10,10 +10,7 @@
     <a href="#">Gestion Achat</a>
     <ul>
         <li>
-           <a href="magasins"> Todo</a>
-        </li>
-        <li>
-            <a href="login" class="nav-link active">Login</a>
+           <a href="magasins">Magasins</a>
         </li>
     </ul>
 </nav>

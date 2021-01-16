@@ -3,6 +3,8 @@ package be.ifosup.dao;
 
 import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.magasin.MagasinDaoImpl;
+import be.ifosup.produit.ProduitDAO;
+import be.ifosup.produit.ProduitDaoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,5 +47,8 @@ public class DAOFactory {
 
     public MagasinDAO getMagasinsDAO(){
         return new MagasinDaoImpl(this);
+    }
+    public ProduitDAO getProduitsDAO(){
+        return new ProduitDaoImpl(this);
     }
 }

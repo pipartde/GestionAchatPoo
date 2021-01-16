@@ -12,6 +12,6 @@ import java.io.IOException;
 public class ServletHome extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("vues/essai.jsp").forward(request, response);
+        request.getRequestDispatcher("vues/index.jsp").forward(request, response);
     }
 }
