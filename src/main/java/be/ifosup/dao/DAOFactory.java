@@ -3,6 +3,8 @@ package be.ifosup.dao;
 
 import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.magasin.MagasinDaoImpl;
+import be.ifosup.mesure.MesureDAO;
+import be.ifosup.mesure.MesureDaoImpl;
 import be.ifosup.produit.ProduitDAO;
 import be.ifosup.produit.ProduitDaoImpl;
 
@@ -33,7 +35,7 @@ public class DAOFactory {
             e.printStackTrace();
         }
         // ATTENTION A NE PAS OUBLIER DE CHANGER LE NOM DE LA BDD DANS L'URL
-        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat", "root", "");
+        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/gestionachat?serverTimezone=CET", "root", "");
         return instance;
     }
 
@@ -50,5 +52,8 @@ public class DAOFactory {
     }
     public ProduitDAO getProduitsDAO(){
         return new ProduitDaoImpl(this);
+    }
+    public MesureDAO getMesuresDAO(){
+        return new MesureDaoImpl(this);
     }
 }
