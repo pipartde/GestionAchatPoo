@@ -58,8 +58,6 @@ public class DAOFactory {
     public MesureDAO getMesuresDAO(){
         return new MesureDaoImpl(this);
     }
-
-
     public CategoriesDAO getCategoriesDAO() {
         return new CategoriesDAOImpl(this);
     }
