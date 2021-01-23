@@ -27,12 +27,14 @@ public class ServletProduitAdd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // servlet envoi des données dans une page .jsp
+
         try {
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         request.getRequestDispatcher("vues/produitAdd.jsp").forward(request, response);
     }
 

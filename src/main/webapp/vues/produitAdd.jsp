@@ -12,7 +12,7 @@
 </head>
 <body>
 <h4>Ajout d'un produit</h4>
-<form action="add-produit" method="post">
+<form action="produitAdd" method="post">
 
     <select name="categorie">
         <c:forEach items="${categories}" var="cat">
@@ -20,7 +20,7 @@
         </c:forEach>
     </select>
 
-    <input type="text" name="produit" placeholder="produit">
+    <input type="text" name="proNom" placeholder="produit">
 
     <select name="mesure">
         <c:forEach items="${mesures}" var="mesure">
