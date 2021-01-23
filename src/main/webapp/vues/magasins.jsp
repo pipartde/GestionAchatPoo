@@ -5,7 +5,7 @@
 <div class="container">
     <main>
         <h1>Magasins</h1>
-        <p>Ceci est la pade des magasins.</p>
+        <h2>Liste des magasins.</h2>
         <table>
             <thead>
             <tr>
@@ -19,13 +19,21 @@
                     <td>${magasin.magNom}</td>
                     <td>
                         <a href="supMagasin?id=${magasin.magId}">
-                            supprimer
+                            Supprimer
+                        </a>
+                        <a href="modMagasin?magId=${magasin.magId}">
+                            Modifier
                         </a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <h2>Ajout d'un magasin</h2>
+        <form action="add-magasin" method="post">
+            <input type="text" name="titre" placeholder="Nouveau magasin">
+            <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
+        </form>
     </main>
 </div>
 <%@include file="../templates/footer.jsp"%>

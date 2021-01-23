@@ -46,8 +46,19 @@ public class MagasinDaoImpl implements MagasinDAO {
     }
 
     @Override
-    public void modifier(Long id) {
-        // a faire !
+    public void modifier(Long magId, String magNom) {
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE magasins SET magNom = ? WHERE magId = ?;");
+
+            preparedStatement.setString(1, magNom);
+            preparedStatement.setString(2, Long.toString(magId));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     @Override
@@ -67,5 +78,20 @@ public class MagasinDaoImpl implements MagasinDAO {
             magasins.add(magasin);
         }
         return magasins;
+    }
+
+    @Override
+    public Magasin recuperer(Long magId) throws SQLException {
+
+        connection = daoFactory.getConnection();
+        preparedStatement = connection.prepareStatement("SELECT magNom FROM magasins WHERE magId = ?;");
+        preparedStatement.setLong(1, magId);
+        resultat = preparedStatement.executeQuery();
+
+        resultat.next();
+        String magNom = resultat.getString("magNom");
+        Magasin magasin = new Magasin(magId, magNom);
+
+        return magasin;
     }
 }
