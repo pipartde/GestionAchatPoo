@@ -7,7 +7,7 @@
         <h2>Modification de la catégorie</h2>
         <form action="mod-categorie" method="post">
             <label><input type="text" name="catNom" placeholder=${categorie.catNom}></label>
-            <input type="hidden" name="catId" value=${categorie.catId}>
+            <input type="hidden" name="catId" value=${categorie.id}>
             <input type="submit" value="Modifier">
         </form>
     </main>
