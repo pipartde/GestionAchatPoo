@@ -30,8 +30,8 @@
             </tbody>
         </table>
         <h2>Ajout d'un magasin</h2>
-        <form action="add-magasin" method="post">
-            <input type="text" name="titre" placeholder="Nouveau magasin">
+        <form action="addMagasin" method="post">
+            <input type="text" name="magNom" placeholder="Nouveau magasin">
             <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
         </form>
     </main>

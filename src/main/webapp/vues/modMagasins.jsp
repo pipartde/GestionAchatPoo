@@ -6,10 +6,10 @@
     <main>
         <h1>Magasins</h1>
         <h2>Modification du magasins</h2>
-        <form action="add-magasin" method="post">
+        <form action="modMagasin" method="post">
             <input type="text" name="magNom" placeholder=${magasin.magNom}>
             <input type="hidden" name="magId" value=${magasin.magId}>
-            <input type="submit" value="Ajouter">
+            <input type="submit" value="Modifier">
         </form>
     </main>
 </div>
