@@ -52,6 +52,6 @@ public class ServletMagasinMod extends HttpServlet {
             throwables.printStackTrace();
         }
         request.setAttribute("magasin", magasin);
-        request.getRequestDispatcher("/vues/magasins.jsp").forward(request,response);
+        request.getRequestDispatcher("/vues/modMagasins.jsp").forward(request,response);
     }
 }

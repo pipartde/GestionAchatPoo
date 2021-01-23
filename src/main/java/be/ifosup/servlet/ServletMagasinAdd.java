@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletMagasinAdd", urlPatterns = {"/add-magasin"})
+@WebServlet(name = "ServletMagasinAdd", urlPatterns = {"/addMagasin"})
 public class ServletMagasinAdd extends HttpServlet {
     private MagasinDAO magasinDAO;
     public void init() throws ServletException {
@@ -36,9 +36,5 @@ public class ServletMagasinAdd extends HttpServlet {
             throwables.printStackTrace();
         }
         request.getRequestDispatcher("vues/magasins.jsp").forward(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("vues/magasinAdd.jsp").forward(request, response);
     }
 }
