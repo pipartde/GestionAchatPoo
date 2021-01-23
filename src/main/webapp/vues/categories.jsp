@@ -6,12 +6,44 @@
     <main>
         <h1>Catégories</h1>
         <p>Voilà la page des catégories ! :D.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Catégories</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
-        <c:forEach items="${categories}" var="categories">
-            <p>${categories.catNom}</p>
-        </c:forEach>
-        <%--Todo Mise en page + options modifier & supprimer--%>
+            <tbody>
+            <c:forEach items="${categories}" var="categorie">
+                <tr>
+                    <td>
+                            ${categorie.catNom}
+                    </td>
+                    <td>
+                        <a href="sup-categorie?id=${categorie.id}">Supprimer</a>
+                    </td>
+                    <td>
+                        MODIFIER
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+    <form action="add-categorie" method="post">
+            <tfoot>
+                <tr>
+                    <td>
 
+                        <label><input type="text" name="catNom" placeholder="Nouvelle Catégorie"></label>
+                    </td>
+
+                    <td>
+                        <input type="submit" value="Ajouter">
+                    </td>
+                </tr>
+            </tfoot>
+    </form>
+        </table>
     </main>
 </div>
 <%@include file="../templates/footer.jsp"%>

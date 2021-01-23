@@ -10,8 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletCategoriesAdd", urlPatterns = {"/add-categorie"})
-public class ServletCategoriesAdd extends HttpServlet {
+@WebServlet(name = "ServletCategoriesSupp", urlPatterns = {"/sup-categorie"})
+public class ServletCategoriesSup extends HttpServlet {
     private CategoriesDAO categoriesDAO;
 
     public void init() throws ServletException {
@@ -19,15 +19,14 @@ public class ServletCategoriesAdd extends HttpServlet {
         this.categoriesDAO = daoFactory.getCategoriesDAO();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String catNom = request.getParameter("catNom");
+        String id = request.getParameter("id");
 
+        categoriesDAO.supprimer(Long.parseLong(id));
 
-        categoriesDAO.ajouter(new Categories(catNom));
-
+        //Redirection
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {
