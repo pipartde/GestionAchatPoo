@@ -30,10 +30,9 @@
             </c:forEach>
             </tbody>
     <form action="add-categorie" method="post">
-            <tfoot>
+
                 <tr>
                     <td>
-
                         <label><input type="text" name="catNom" placeholder="Nouvelle Catégorie"></label>
                     </td>
 
@@ -41,8 +40,9 @@
                         <input type="submit" value="Ajouter">
                     </td>
                 </tr>
-            </tfoot>
+
     </form>
+
         </table>
     </main>
 </div>
