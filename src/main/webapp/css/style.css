@@ -1,0 +1,123 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+a{
+    color: #FE7F2D;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h1{
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+a:hover{
+    color: gray;
+}
+
+footer {
+    box-sizing: border-box;
+    clear: both;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    background-color: #3E3E3E;
+    color: rgb(200,200,200);
+}
+
+footer a{
+    color: rgb(200,200,200);
+}
+
+footer p{
+    margin:auto;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(250, 250, 250, .9);
+    box-sizing: border-box;
+    min-height: calc(100vh - 140px);
+    width: 800px;
+    margin: 20px auto;
+    border-radius: 5px 50px;
+    padding : 20px 40px;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* === MENU === */
+
+nav{
+    box-sizing: border-box;
+    height : 80px;
+    width: 100%;
+    background-color: #3E3E3E;
+}
+
+nav div{
+    width: 800px;
+    margin: auto;
+    font-size: 30px;
+    padding-top : 45px;
+}
+
+.active{
+    color: rgb(200,200,200);
+}
+
+nav ul {
+    display: block;
+    list-style-type:none;
+}
+
+nav li{
+    display: inline;
+}
+
+.right{
+    position: relative;
+    top: -35px;
+    float: right;
+    font-size: 0.7em;
+    margin-top: 5px;
+}
+
+/* === FORMULAIRE ===*/
+
+form{
+    width: 300px;
+    margin: auto;
+    border:1px solid black;
+    border-radius: 5px 5px;
+    padding : 20px 40px;
+    background-color: rgba(70, 217, 127,.3);
+}
+
+.field{
+    margin: 10px 0px;
+}
+
+/* === TABLE ===*/
+
+table{
+    margin:20px;
+    max-width:660px;
+    border-collapse: collapse;
+}
+
+td, th{
+    text-align: left;
+    padding: 5px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+}

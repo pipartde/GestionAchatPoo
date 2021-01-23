@@ -31,8 +31,12 @@
         </table>
         <h2>Ajout d'un magasin</h2>
         <form action="addMagasin" method="post">
-            <input type="text" name="magNom" placeholder="Nouveau magasin">
-            <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
+            <div class="field">
+                <input type="text" name="magNom" placeholder="Nouveau magasin">
+            </div>
+            <div class="field">
+                <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
+            </div>
         </form>
     </main>
 </div>

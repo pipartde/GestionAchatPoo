@@ -22,11 +22,16 @@ public class ServletCategoriesSup extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+        // Récupération des champs
         String id = request.getParameter("id");
 
+
+        // Suppression dans la DB
         categoriesDAO.supprimer(Long.parseLong(id));
 
         //Redirection
+
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {

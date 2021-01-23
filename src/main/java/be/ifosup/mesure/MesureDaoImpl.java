@@ -19,10 +19,9 @@ public class MesureDaoImpl implements MesureDAO {
     @Override
     public void ajouter(Mesure mesure) throws SQLException {
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("INSERT INTO mesures (mesId, mesNom) VALUE (?, ?)");
+        preparedStatement = connection.prepareStatement("INSERT INTO mesures (mesNom) VALUE (?)");
 
-        preparedStatement.setLong(1, mesure.getMesId());
-        preparedStatement.setString(2, mesure.getMesNom());
+        preparedStatement.setString(1, mesure.getMesNom());
 
         preparedStatement.executeUpdate();
     }
@@ -38,8 +37,15 @@ public class MesureDaoImpl implements MesureDAO {
     }
 
     @Override
-    public void modifier(Mesure mesure) {
-        // à faire
+    public void modifier(Long mesId, String mesNom) throws SQLException {
+        connection = daoFactory.getConnection();
+
+        preparedStatement = connection.prepareStatement("UPDATE mesures SET mesNom = ? WHERE mesId = ?;");
+
+        preparedStatement.setString(1, mesNom);
+        preparedStatement.setString(2, Long.toString(mesId));
+
+        preparedStatement.executeUpdate();
     }
 
     @Override
@@ -54,9 +60,26 @@ public class MesureDaoImpl implements MesureDAO {
             Long mesId = resultat.getLong("mesId");
             String mesNom = resultat.getString("mesNom");
 
-            mesures.add(new Mesure(mesId, mesNom));
+            Mesure mesure = new Mesure(mesId, mesNom);
+
+            mesures.add(mesure);
         }
 
         return mesures;
+    }
+
+    @Override
+    public Mesure recuperer(Long mesId) throws SQLException {
+
+        connection = daoFactory.getConnection();
+        preparedStatement = connection.prepareStatement("SELECT mesNom FROM mesures WHERE mesId = ?");
+        preparedStatement.setLong(1, mesId);
+        resultat = preparedStatement.executeQuery();
+
+        resultat.next();
+        String mesNom = resultat.getString("mesNom");
+        Mesure mesure = new Mesure(mesId, mesNom);
+
+        return mesure;
     }
 }

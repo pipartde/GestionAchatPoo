@@ -1,7 +1,6 @@
 package be.ifosup.categories;
 
 import be.ifosup.dao.DAOFactory;
-import be.ifosup.categories.Categories;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,8 +46,33 @@ public class CategoriesDAOImpl implements CategoriesDAO {
     }
 
     @Override
-    public void modifier(Long catId) {
-         // todo ajouter fonction 'modifier categories"
+    public void modifier(Long catId, String catNom) {
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE categories SET catNom = ? WHERE catId = ?;");
+
+            preparedStatement.setString(1, catNom);
+            preparedStatement.setLong(2, catId);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public Categories lire(Long catId) throws SQLException{
+
+        connection = daoFactory.getConnection();
+        preparedStatement = connection.prepareStatement("SELECT catNom FROM categories WHERE catId = ?;");
+
+        preparedStatement.setLong(1, catId);
+
+        resultat = preparedStatement.executeQuery();
+        resultat.next();
+
+        String catNom = resultat.getString("catNom");
+
+        return new Categories(catId, catNom);
     }
 
     @Override
