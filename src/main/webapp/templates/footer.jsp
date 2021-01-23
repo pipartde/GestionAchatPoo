@@ -8,5 +8,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 </body>
 <footer>
-    <p>&copy; Ifosup Wavre 2020</p>
+    <p>&copy; Ifosup Wavre 2021</p>
 </footer>

@@ -37,8 +37,4 @@ public class ServletMagasinAdd extends HttpServlet {
         }
         request.getRequestDispatcher("vues/magasins.jsp").forward(request, response);
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("vues/magasinAdd.jsp").forward(request, response);
-    }
 }
