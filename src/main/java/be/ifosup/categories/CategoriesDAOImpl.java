@@ -21,7 +21,7 @@ public class CategoriesDAOImpl implements CategoriesDAO {
     public void ajouter(Categories categories) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO categoies (catNom) VALUE (?); ");
+            preparedStatement = connection.prepareStatement("INSERT INTO categories (catNom) VALUE (?); ");
 
             preparedStatement.setString(1, categories.getcatNom());
 
