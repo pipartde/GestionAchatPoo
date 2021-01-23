@@ -24,7 +24,7 @@
                         <a href="sup-categorie?id=${categorie.id}">Supprimer</a>
                     </td>
                     <td>
-                        MODIFIER
+                        <a href="mod-categorie?id=${categorie.id}">Modifier</a>
                     </td>
                 </tr>
             </c:forEach>

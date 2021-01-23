@@ -21,13 +21,18 @@ public class ServletCategoriesAdd extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // Formater en UTF-8
         request.setCharacterEncoding("UTF-8");
 
+
+        // Récupération des champs
         String catNom = request.getParameter("catNom");
 
-
+        // Ajout dans la DB
         categoriesDAO.ajouter(new Categories(catNom));
 
+
+        // Redirection
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {

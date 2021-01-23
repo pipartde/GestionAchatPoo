@@ -52,7 +52,7 @@ public class MagasinDaoImpl implements MagasinDAO {
             preparedStatement = connection.prepareStatement("UPDATE magasins SET magNom = ? WHERE magId = ?;");
 
             preparedStatement.setString(1, magNom);
-            preparedStatement.setString(2, Long.toString(magId));
+            preparedStatement.setLong(2, magId);
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {

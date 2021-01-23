@@ -19,6 +19,8 @@ public class ServletCategories extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // Affichage de la liste des catégories
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {
