@@ -18,6 +18,11 @@ public class Mesure {
         this.mesId = mesId;
     }
 
+    public Mesure ( String mesNom) {
+        this.mesNom = mesNom;
+    }
+
+
     // Getter
 
     public Long getMesId() {
