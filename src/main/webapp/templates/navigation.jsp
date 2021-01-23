@@ -11,6 +11,9 @@
         <li>
             <a href="mesures">Mesures</a>
         </li>
+        <li>
+            <a href="produits">Produits</a>
+        </li>
     </ul>
 
 </nav>
