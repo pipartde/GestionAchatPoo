@@ -26,21 +26,22 @@ public class ServletProduitAdd extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // servlet envoi des données dans une page .jsp
         try {
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
-            request.getRequestDispatcher("vues/produitAdd.jsp").forward(request, response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        request.getRequestDispatcher("vues/produitAdd.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // servlet reçoit les info formulaire
         // forcer l'UTF-8 dans les échanges
         request.setCharacterEncoding("UTF-8");
 
-        // récupération des valeurs du formulaire
         String proNom = request.getParameter("proNom");
 
         // ajout du produit dans la BD
