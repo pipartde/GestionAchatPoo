@@ -10,3 +10,4 @@
 <footer>
     <p>&copy; Ifosup Wavre 2021</p>
 </footer>
+</html>
