@@ -20,6 +20,7 @@ public class ServletProduit extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //le servlet envoi des données sur la page .jsp
         try{
             request.setAttribute("produits",produitDAO.liste());
         } catch (SQLException throwables) {
@@ -30,6 +31,6 @@ public class ServletProduit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //le servlet recoit les données d'un formulaire
     }
 }

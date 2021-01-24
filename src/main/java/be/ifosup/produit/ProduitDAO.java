@@ -10,7 +10,8 @@ public interface ProduitDAO {
 
     void ajouter(Produit produit);
     void supprimer(Long id);
-    void modifier(Long id);
+    void modifier(Long id, String proNom, Long prCatId, Long proMesId, Double proQtt);
+    Produit recuperer(Long proId) throws SQLException;
     List<Produit> liste() throws SQLException;
 
 }

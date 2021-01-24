@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletProduitSup", value = "/ServletProduitSup")
+@WebServlet(name = "ServletProduitSup", urlPatterns = {"/produitSup"})
 public class ServletProduitSup extends HttpServlet {
 
     private ProduitDAO produitDAO;
@@ -35,8 +35,5 @@ public class ServletProduitSup extends HttpServlet {
         request.getRequestDispatcher("/vues/produits.jsp").forward(request,response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
 }

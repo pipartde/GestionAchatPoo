@@ -22,9 +22,12 @@ public class ProduitDaoImpl implements ProduitDAO {
     public void ajouter(Produit produits) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO produits (proNom) VALUES (?);");
+            preparedStatement = connection.prepareStatement("INSERT INTO produits (proNom, proCatId, proMesId, proQtt) VALUES (?, ?, ?, ?);");
 
             preparedStatement.setString(1, produits.getproNom());
+            preparedStatement.setLong(2, produits.getProCatId());
+            preparedStatement.setLong(3, produits.getProMesId());
+            preparedStatement.setDouble(4, produits.getproQtt());
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -46,8 +49,22 @@ public class ProduitDaoImpl implements ProduitDAO {
     }
 
     @Override
-    public void modifier(Long id) {
-        // a faire !
+    public void modifier(Long id, String proNom, Long proCatId, Long proMesId, Double proQtt) {
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE produits SET proNom = ?, proCatId = ?, proMesId = ?, proQtt = ? WHERE proId = ?");
+
+            preparedStatement.setString(1, proNom);
+            preparedStatement.setLong(2, proCatId);
+            preparedStatement.setLong(3, proMesId);
+            preparedStatement.setDouble(4, proQtt);
+            preparedStatement.setLong(5, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     @Override
@@ -61,11 +78,35 @@ public class ProduitDaoImpl implements ProduitDAO {
         while( resultat.next()) {
             Long id = resultat.getLong("proId");
             String proNom = resultat.getString("proNom");
+            Double proQtt = resultat.getDouble("proQtt");
+            Long proCatId = resultat.getLong("proCatId");
+            Long proMesId = resultat.getLong("proMesId");
 
-            Produit produit= new Produit(id, proNom);
+            Produit produit = new Produit(id, proNom, proCatId, proMesId, proQtt);
 
             produits.add(produit);
         }
         return produits;
     }
+
+    @Override
+    public Produit recuperer(Long proId) throws SQLException{
+
+        connection = daoFactory.getConnection();
+        preparedStatement = connection.prepareStatement("SELECT * FROM produits WHERE proID = ?;");
+        preparedStatement.setLong(1, proId);
+        resultat = preparedStatement.executeQuery();
+
+        resultat.next();
+
+        String proNom = resultat.getString("proNom");
+        Double proQtt = resultat.getDouble("proQtt");
+        Long proCatId = resultat.getLong("proCatId");
+        Long proMesId = resultat.getLong("proMesId");
+
+        Produit produit = new Produit(proNom, proCatId, proMesId, proQtt);
+
+        return produit;
+    }
+
 }
