@@ -11,6 +11,9 @@
             <thead>
             <tr>
                 <th>produit</th>
+                <th>catégorie</th>
+                <th>Mesure</th>
+                <th>quantité</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -18,6 +21,9 @@
             <c:forEach items="${produits}" var="produit">
                 <tr>
                     <td>${produit.proNom}</td>
+                    <td>${produit.proCatId}</td>
+                    <td>${produit.proMesId}</td>
+                    <td>${produit.proQtt}</td>
                     <td>
                         <a href="produitSup?id=${produit.id}">
                             Supprimer
