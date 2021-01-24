@@ -3,7 +3,7 @@
     <div>
         <ul>
             <li>
-                <a href="#">Gestion Achat</a>
+                <a href="${pageContext.request.contextPath}">Gestion Achat</a>
             </li>
         </ul>
         <ul class="right">

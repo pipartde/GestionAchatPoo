@@ -12,7 +12,8 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-    <style><%@ include file="/css/style.css"%></style>
+    <script src="https://kit.fontawesome.com/7d7eafc9ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
 
 
     <title>Gestion achats</title>

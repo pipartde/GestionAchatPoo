@@ -5,7 +5,6 @@
 <div class="container">
     <main>
         <h1>Catégories</h1>
-        <p>Voilà la page des catégories ! :D.</p>
         <table>
             <thead>
                 <tr>
@@ -21,9 +20,8 @@
                             ${categorie.catNom}
                     </td>
                     <td>
-                        <a href="sup-categorie?id=${categorie.id}">Supprimer</a>
-
-                        <a href="mod-categorie?catId=${categorie.id}">Modifier</a>
+                        <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
+                        <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-minus" title="supprimer"></i></a>
                     </td>
                 </tr>
             </c:forEach>

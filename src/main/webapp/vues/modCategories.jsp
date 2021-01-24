@@ -2,6 +2,7 @@
 
 <%@include file="../templates/header.jsp"%>
 <%@include file="../templates/navigation.jsp"%>
+<div class="container">
     <main>
         <h1>Catégories</h1>
         <h2>Modification de la catégorie</h2>
@@ -11,5 +12,6 @@
             <input type="submit" value="Modifier">
         </form>
     </main>
+</div>
 
 <%@include file="../templates/footer.jsp"%>

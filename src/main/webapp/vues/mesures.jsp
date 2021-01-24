@@ -6,12 +6,11 @@
 <div class="container">
     <main>
         <h1>Mesures</h1>
-        <h2>Liste des mesures.</h2>
 
         <table>
             <thead>
             <tr>
-                <th>Mesure</th>
+                <th>Mesures</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -20,24 +19,27 @@
                 <tr>
                     <td>${mesure.mesNom}</td>
                     <td>
-                        <a href="mesures-sup?mesId=${mesure.mesId}">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
-                            Supprimer
-                        </a>
                         <a href="mesures-mod?mesId=${mesure.mesId}">
-                            Modifier
+                            <i class="fas fa-pen" title="modifier"></i>
+                        </a>
+                        <a href="mesures-sup?mesId=${mesure.mesId}">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
+                            <i class="fas fa-minus" title="supprimer"></i>
                         </a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
+            <form action="mesures-add" method="post">
+                <tr>
+                    <td>
+                        <input type="text" name="mesNom" placeholder="Nouvelle mesure">
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
+                    </td>
+                </tr>
+            </form>
         </table>
-
-        <h2>Ajout d'une mesure</h2>
-        <form action="mesures-add" method="post">
-            <input type="text" name="mesNom" placeholder="Nouvelle mesure">
-            <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
-        </form>
-
     </main>
 </div>
 

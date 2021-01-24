@@ -38,7 +38,7 @@ footer p{
 }
 
 .container {
-    background-color: rgba(250, 250, 250, .9);
+    background-color: rgba(250, 250, 250, .95);
     box-sizing: border-box;
     min-height: calc(100vh - 140px);
     width: 800px;
@@ -96,12 +96,11 @@ nav li{
 /* === FORMULAIRE ===*/
 
 form{
-    width: 300px;
-    margin: auto;
-    border:1px solid black;
+    margin: 20px auto auto;
+    width: fit-content;
     border-radius: 5px 5px;
-    padding : 20px 40px;
-    background-color: rgba(70, 217, 127,.3);
+    padding : 10px 10px;
+    background-color: rgba(0, 0, 0,.3);
 }
 
 .field{
@@ -111,7 +110,7 @@ form{
 /* === TABLE ===*/
 
 table{
-    margin:20px;
+    margin: auto;
     max-width:660px;
     border-collapse: collapse;
 }

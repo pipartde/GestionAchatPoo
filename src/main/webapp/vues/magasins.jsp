@@ -5,11 +5,10 @@
 <div class="container">
     <main>
         <h1>Magasins</h1>
-        <h2>Liste des magasins.</h2>
         <table>
             <thead>
             <tr>
-                <th>Magasin</th>
+                <th>Magasins</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -18,26 +17,27 @@
                 <tr>
                     <td>${magasin.magNom}</td>
                     <td>
-                        <a href="supMagasin?id=${magasin.magId}">
-                            Supprimer
-                        </a>
                         <a href="modMagasin?magId=${magasin.magId}">
-                            Modifier
+                            <i class="fas fa-pen" title="modifier"></i>
+                        </a>
+                        <a href="supMagasin?id=${magasin.magId}">
+                            <i class="fas fa-minus" title="supprimer"></i>
                         </a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
+            <form action="addMagasin" method="post">
+                <tr>
+                    <td>
+                        <input type="text" name="magNom" placeholder="Nouveau magasin">
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
+                    </td>
+                </tr>
+            </form>
         </table>
-        <h2>Ajout d'un magasin</h2>
-        <form action="addMagasin" method="post">
-            <div class="field">
-                <input type="text" name="magNom" placeholder="Nouveau magasin">
-            </div>
-            <div class="field">
-                <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
-            </div>
-        </form>
     </main>
 </div>
 <%@include file="../templates/footer.jsp"%>
