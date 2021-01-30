@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@include file="../templates/header.jsp"%>
 <%@include file="../templates/navigation.jsp"%>
 <%! String titre = "Mesures" ;%>
@@ -15,19 +14,23 @@
             </tr>
             </thead>
             <tbody>
+
             <c:forEach items="${ListeDesMesures}" var="mesure">                 <%-- Va rechercher les infos depuis le servelt - donc l'objet liste 'mesures' retourné par le daoImpl est renommé 'ListeDesMesures' par le servlet --%>
-                <tr>
-                    <td>${mesure.mesNom}</td>
-                    <td>
-                        <a href="mesures-mod?mesId=${mesure.mesId}">
-                            <i class="fas fa-pen" title="modifier"></i>
-                        </a>
-                        <a href="mesures-sup?mesId=${mesure.mesId}">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
-                            <i class="fas fa-minus" title="supprimer"></i>
-                        </a>
-                    </td>
-                </tr>
+                <c:if test="${mesure.mesId != 5}">
+                    <tr>
+                        <td>${mesure.mesNom}</td>
+                        <td>
+                            <a href="mesures-mod?mesId=${mesure.mesId}">
+                                <i class="fas fa-pen" title="modifier"></i>
+                            </a>
+                            <a href="mesures-sup?mesId=${mesure.mesId}">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
+                                <i class="fas fa-minus" title="supprimer"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
+
             </tbody>
             <form action="mesures-add" method="post">
                 <tr>
