@@ -36,8 +36,16 @@ public class MagasinDaoImpl implements MagasinDAO {
     public void supprimer(Long magId) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("DELETE FROM magasins WHERE magId = ?;");
+            preparedStatement = connection.prepareStatement("DELETE magasins , achats , produits FROM magasins INNER JOIN achats ON achMagId = magId INNER JOIN produits ON achProId = proId WHERE magId = ?;");
+            preparedStatement.setLong(1, magId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("DELETE FROM magasins WHERE magId = ?;");
             preparedStatement.setLong(1, magId);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
