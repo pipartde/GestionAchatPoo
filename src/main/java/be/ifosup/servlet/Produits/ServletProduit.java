@@ -28,9 +28,15 @@ public class ServletProduit extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //le servlet envoi des données sur la page .jsp
         String listeId = request.getParameter("magId");
+
+        try{
+            request.setAttribute("produits",produitDAO.liste(Long.parseLong(listeId)));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         try{
             request.setAttribute("listeId", listeId);
-            request.setAttribute("produits",produitDAO.liste(Long.parseLong(listeId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
