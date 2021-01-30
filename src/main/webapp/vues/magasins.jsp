@@ -15,7 +15,7 @@
             <tbody>
             <c:forEach items="${magasins}" var="magasin">
                 <tr>
-                    <td>${magasin.magNom}</td>
+                    <td><a href="produits?magId=${magasin.magId}">${magasin.magNom}</a></td>
                     <td>
                         <a href="modMagasin?magId=${magasin.magId}">
                             <i class="fas fa-pen" title="modifier"></i>
