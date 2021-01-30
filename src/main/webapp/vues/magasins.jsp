@@ -21,7 +21,7 @@
                             <i class="fas fa-pen" title="modifier"></i>
                         </a>
                         <a href="supMagasin?id=${magasin.magId}">
-                            <i class="fas fa-minus" title="supprimer"></i>
+                            <i class="fas fa-trash" title="supprimer"></i>
                         </a>
                     </td>
                 </tr>

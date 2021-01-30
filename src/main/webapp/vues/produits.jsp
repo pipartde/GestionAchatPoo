@@ -33,11 +33,11 @@
                     </c:forEach></td>
 
                     <td>
-                        <a href="produitSup?id=${produit.id}">
-                            Supprimer
-                        </a>
                         <a href="produitMod?id=${produit.id}">
-                            Modifier
+                            <i class="fas fa-pen" title="modifier"></i>
+                        </a>
+                        <a href="produitSup?id=${produit.id}">
+                            <i class="fas fa-trash" title="supprimer"></i>
                         </a>
                     </td>
                 </tr>

@@ -22,7 +22,7 @@
                         </td>
                         <td>
                             <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
-                            <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-minus" title="supprimer"></i></a>
+                            <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-trash" title="supprimer"></i></a>
                         </td>
                     </tr>
                 </c:if>
