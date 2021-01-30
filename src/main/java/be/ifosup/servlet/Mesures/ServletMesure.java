@@ -1,4 +1,4 @@
-package be.ifosup.servlet;
+package be.ifosup.servlet.Mesures;
 
 import be.ifosup.dao.DAOFactory;
 import be.ifosup.mesure.MesureDAO;
@@ -9,10 +9,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletMesureSup",urlPatterns = {"/mesures-sup"})
+@WebServlet(name = "ServletMesure", urlPatterns = "/mesures")
 
-public class ServletMesureSup extends HttpServlet {
-
+public class ServletMesure extends HttpServlet {
     private MesureDAO mesureDAO;
 
     public void init() throws ServletException{
@@ -22,26 +21,17 @@ public class ServletMesureSup extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupération id
-
-        String mesId = request.getParameter("mesId");
-
-        // Suppression
-
-        try {
-            mesureDAO.supprimer(Long.parseLong(mesId));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        // Redirection
-
         try {
             request.setAttribute("ListeDesMesures", mesureDAO.liste());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ServletException(e);
         }
-        request.getRequestDispatcher("vues/mesures.jsp").forward(request,response);
+        request.getRequestDispatcher("/vues/mesures.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }
