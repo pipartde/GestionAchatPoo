@@ -64,7 +64,6 @@ public class ProduitDaoImpl implements ProduitDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     @Override
@@ -73,7 +72,7 @@ public class ProduitDaoImpl implements ProduitDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM produits;");
+        resultat = statement.executeQuery("SELECT * FROM produits");
 
         while( resultat.next()) {
             Long id = resultat.getLong("proId");
