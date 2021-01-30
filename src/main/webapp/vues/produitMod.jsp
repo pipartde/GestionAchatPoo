@@ -23,6 +23,7 @@
             </select>
 
             <input type="hidden" name="proId" value="${produit.id}">
+            <input type="hidden" name="listeId" value="${listeId}">
             <input type="submit" value="Modifier">
             <p></p>
         </form>

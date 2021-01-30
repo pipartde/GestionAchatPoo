@@ -30,11 +30,12 @@ public class ServletProduitSup extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // récupération Id
         String id = request.getParameter("id");
+        String listeId = request.getParameter("listeId");
         // appel de la méthode de suppresion
         produitDAO.supprimer(Long.parseLong(id));
         // récupération des produits et retour a la bonne vue
         try {
-            request.setAttribute("produits", produitDAO.liste());
+            request.setAttribute("produits", produitDAO.liste(Long.parseLong(listeId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
 

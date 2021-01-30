@@ -19,20 +19,27 @@ public class ProduitDaoImpl implements ProduitDAO {
     }
 
     @Override
-    public void ajouter(Produit produits) {
+    public void ajouter(Produit produits, Long listeId) {
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO produits (proNom, proCatId, proMesId, proQtt) VALUES (?, ?, ?, ?);");
+            String sql = "INSERT INTO produits (proNom, proCatId, proMesId, proQtt) VALUES (?, ?, ?, ?);";
+            preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, produits.getproNom());
             preparedStatement.setLong(2, produits.getProCatId());
             preparedStatement.setLong(3, produits.getProMesId());
             preparedStatement.setDouble(4, produits.getproQtt());
+            long lastInsertedID = preparedStatement.executeUpdate(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
+            preparedStatement = connection.prepareStatement("INSERT INTO achats (achMagId, achProId) VALUES (?, ?);");
+            preparedStatement.setLong(1, listeId);
+            preparedStatement.setLong(2, lastInsertedID);
             preparedStatement.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     @Override
@@ -67,12 +74,16 @@ public class ProduitDaoImpl implements ProduitDAO {
     }
 
     @Override
-    public List<Produit> liste() throws SQLException {
+    public List<Produit> liste(Long listeId) throws SQLException {
         List<Produit> produits = new ArrayList<>();
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM produits");
+        resultat = statement.executeQuery("SELECT * FROM produits" +
+                "inner join achats on achProId=proId" +
+                "inner join magasins on magId=achMagId" +
+                "WHERE magId = ?;");
+        preparedStatement.setLong(1, listeId);
 
         while( resultat.next()) {
             Long id = resultat.getLong("proId");

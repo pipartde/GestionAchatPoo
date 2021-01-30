@@ -54,17 +54,18 @@ public class ServletProduitAdd extends HttpServlet {
         // forcer l'UTF-8 dans les échanges
         request.setCharacterEncoding("UTF-8");
 
+        String listeId = request.getParameter("listeId");
         String proCatId = request.getParameter("category");
         String proNom = request.getParameter("proNom");
         String proQtt = request.getParameter("quantity");
         String proMesId = request.getParameter("mesures");
 
         // ajout du produit dans la BD
-        produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)));
+        produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(listeId));
 
         // redirection
         try {
-            request.setAttribute("produits", produitDAO.liste());
+            request.setAttribute("produits", produitDAO.liste(Long.parseLong(listeId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
