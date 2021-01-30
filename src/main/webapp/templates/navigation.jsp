@@ -3,21 +3,21 @@
     <div>
         <ul>
             <li>
-                <a href="${pageContext.request.contextPath}">Gestion Achat</a>
+                <a href="${pageContext.request.contextPath}" <% if(titre == "Index"){ %>class="active"<% } %> >Gestion Achat</a>
             </li>
         </ul>
         <ul class="right">
             <li>
-               <a href="magasins">Magasins</a>
+               <a href="magasins" <% if(titre == "Magasin"){ %>class="active"<% } %> >Magasins</a>
             </li>
             <li>
-                <a href="categories">Catégories</a>
+                <a href="categories" <% if(titre == "Catégories"){ %>class="active"<% } %> >Catégories</a>
             </li>
             <li>
-                <a href="mesures">Mesures</a>
+                <a href="mesures" <% if(titre == "Mesures"){ %>class="active"<% } %> >Mesures</a>
             </li>
             <li>
-                <a href="produits">Produits</a>
+                <a href="produits" <% if(titre == "Produits"){ %>class="active"<% } %> >Produits</a>
             </li>
         </ul>
     </div>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%! String titre = "Index" ;%>
 
 <%@include file="../templates/header.jsp"%>
 <%@include file="../templates/navigation.jsp"%>

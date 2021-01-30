@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%! String titre = "Magasin" ;%>
 <%@include file="../templates/header.jsp"%>
 <%@include file="../templates/navigation.jsp"%>
 <div class="container">

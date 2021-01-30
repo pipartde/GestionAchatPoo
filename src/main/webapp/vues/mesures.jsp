@@ -2,7 +2,7 @@
 
 <%@include file="../templates/header.jsp"%>
 <%@include file="../templates/navigation.jsp"%>
-
+<%! String titre = "Mesures" ;%>
 <div class="container">
     <main>
         <h1>Mesures</h1>
