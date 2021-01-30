@@ -21,8 +21,15 @@
             <c:forEach items="${produits}" var="produit">
                 <tr>
                     <td>${produit.proNom}</td>
-                    <td>${produit.proCatId}</td>
-                    <td>${produit.proMesId}</td>
+
+                    <td><c:forEach items="${categories}" var="categorie">
+                        <c:if test="${categorie.id == produit.proCatId}">${categorie.catNom}</c:if>
+                    </c:forEach></td>
+
+                    <td><c:forEach items="${mesures}" var="mesure">
+                        <c:if test="${mesure.mesId == produit.proMesId}">${mesure.mesNom}</c:if>
+                    </c:forEach></td>
+
                     <td>${produit.proQtt}</td>
                     <td>
                         <a href="produitSup?id=${produit.id}">
