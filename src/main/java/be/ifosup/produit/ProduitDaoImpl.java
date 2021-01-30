@@ -98,12 +98,13 @@ public class ProduitDaoImpl implements ProduitDAO {
 
         resultat.next();
 
+        Long id = resultat.getLong("proId");
         String proNom = resultat.getString("proNom");
         Double proQtt = resultat.getDouble("proQtt");
         Long proCatId = resultat.getLong("proCatId");
         Long proMesId = resultat.getLong("proMesId");
 
-        Produit produit = new Produit(proNom, proCatId, proMesId, proQtt);
+        Produit produit = new Produit(id, proNom, proCatId, proMesId, proQtt);
 
         return produit;
     }

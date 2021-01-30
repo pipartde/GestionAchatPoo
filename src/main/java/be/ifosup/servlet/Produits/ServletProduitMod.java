@@ -63,12 +63,20 @@ public class ServletProduitMod extends HttpServlet {
         String proQtt = request.getParameter("quantity");
         String proMesId = request.getParameter("mesures");
 
+        /*System.out.println(id);
+        System.out.println(proCatId);
+        System.out.println(proMesId);
+        System.out.println(proNom);
+        System.out.println(proQtt);*/
+
         // modification du produit dans la BD
         produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));
 
         // redirection
         try {
             request.setAttribute("produits", produitDAO.liste());
+            request.setAttribute("categories", categoriesDAO.liste());
+            request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
