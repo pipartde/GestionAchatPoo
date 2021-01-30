@@ -1,4 +1,4 @@
-package be.ifosup.servlet;
+package be.ifosup.servlet.Categories;
 
 import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;

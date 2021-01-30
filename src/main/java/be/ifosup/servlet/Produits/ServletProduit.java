@@ -1,7 +1,9 @@
-package be.ifosup.servlet;
+package be.ifosup.servlet.Produits;
 
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.mesure.MesureDAO;
+import be.ifosup.produit.ProduitDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -9,29 +11,34 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletCategories", urlPatterns = {"/categories"})
-public class ServletCategories extends HttpServlet {
+@WebServlet(name = "ServletProduit", urlPatterns = "/produits")
+public class ServletProduit extends HttpServlet {
+    private ProduitDAO produitDAO;
     private CategoriesDAO categoriesDAO;
+    private MesureDAO mesureDAO;
 
-    public void init() throws ServletException {
+    public void init() throws ServletException{
         DAOFactory daoFactory = DAOFactory.getInstance();
+        this.produitDAO = daoFactory.getProduitsDAO();
         this.categoriesDAO = daoFactory.getCategoriesDAO();
+        this.mesureDAO = daoFactory.getMesuresDAO();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // Affichage de la liste des catégories
-        try {
+        //le servlet envoi des données sur la page .jsp
+        try{
+            request.setAttribute("produits",produitDAO.liste());
             request.setAttribute("categories", categoriesDAO.liste());
+            request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("/vues/categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/vues/produits.jsp").forward(request,response);
     }
 
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // Todo formulaire de modification+ajout+suppression Categories
+        //le servlet recoit les données d'un formulaire
     }
 }

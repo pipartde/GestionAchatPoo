@@ -1,4 +1,4 @@
-package be.ifosup.servlet;
+package be.ifosup.servlet.Categories;
 
 import be.ifosup.dao.DAOFactory;
 import be.ifosup.categories.Categories;
@@ -10,8 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletCategoriesAdd", urlPatterns = {"/add-categorie"})
-public class ServletCategoriesAdd extends HttpServlet {
+@WebServlet(name = "ServletCategoriesSupp", urlPatterns = {"/sup-categorie"})
+public class ServletCategoriesSup extends HttpServlet {
     private CategoriesDAO categoriesDAO;
 
     public void init() throws ServletException {
@@ -19,20 +19,19 @@ public class ServletCategoriesAdd extends HttpServlet {
         this.categoriesDAO = daoFactory.getCategoriesDAO();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Formater en UTF-8
-        request.setCharacterEncoding("UTF-8");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
         // Récupération des champs
-        String catNom = request.getParameter("catNom");
-
-        // Ajout dans la DB
-        categoriesDAO.ajouter(new Categories(catNom));
+        String id = request.getParameter("id");
 
 
-        // Redirection
+        // Suppression dans la DB
+        categoriesDAO.supprimer(Long.parseLong(id));
+
+        //Redirection
+
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {
