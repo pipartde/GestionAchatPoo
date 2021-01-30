@@ -65,6 +65,8 @@ public class ServletProduitAdd extends HttpServlet {
         // redirection
         try {
             request.setAttribute("produits", produitDAO.liste());
+            request.setAttribute("categories", categoriesDAO.liste());
+            request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

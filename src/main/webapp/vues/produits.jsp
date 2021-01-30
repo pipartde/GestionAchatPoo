@@ -20,17 +20,18 @@
             <tbody>
             <c:forEach items="${produits}" var="produit">
                 <tr>
-                    <td>${produit.proNom}</td>
-
                     <td><c:forEach items="${categories}" var="categorie">
                         <c:if test="${categorie.id == produit.proCatId}">${categorie.catNom}</c:if>
                     </c:forEach></td>
+
+                    <td>${produit.proNom}</td>
+
+                    <td>${produit.proQtt}</td>
 
                     <td><c:forEach items="${mesures}" var="mesure">
                         <c:if test="${mesure.mesId == produit.proMesId}">${mesure.mesNom}</c:if>
                     </c:forEach></td>
 
-                    <td>${produit.proQtt}</td>
                     <td>
                         <a href="produitSup?id=${produit.id}">
                             Supprimer
@@ -42,8 +43,34 @@
                 </tr>
             </c:forEach>
             </tbody>
+            <form action="produitAdd" method="post">
+                <tr>
+                    <td>
+                        <select name="category">
+                            <c:forEach items="${categories}" var="categorie">
+                                <option value="${categorie.id}">${categorie.catNom}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="proNom" placeholder="produit">
+                    </td>
+                    <td>
+                        <input type="text" name="quantity" placeholder="Quantités voulue">
+                    </td>
+                    <td>
+                        <select name="mesures">
+                            <c:forEach items="${mesures}" var="mesure">
+                                <option value="${mesure.mesId}">${mesure.mesNom}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="Ajouter">
+                    </td>
+                </tr>
+            </form>
         </table>
-        <p>Ajout d'un produit : <a href="produitAdd">Ajouter</a></p>
     </main>
 </div>
 
