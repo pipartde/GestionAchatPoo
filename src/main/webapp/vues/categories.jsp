@@ -15,15 +15,17 @@
 
             <tbody>
             <c:forEach items="${categories}" var="categorie">
-                <tr>
-                    <td>
-                            ${categorie.catNom}
-                    </td>
-                    <td>
-                        <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
-                        <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-minus" title="supprimer"></i></a>
-                    </td>
-                </tr>
+                <c:if test="${categorie.id != 1}">
+                    <tr>
+                        <td>
+                                ${categorie.catNom}
+                        </td>
+                        <td>
+                            <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
+                            <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-minus" title="supprimer"></i></a>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
             </tbody>
     <form action="add-categorie" method="post">
