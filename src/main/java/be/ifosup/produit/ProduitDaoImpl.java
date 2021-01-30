@@ -79,10 +79,7 @@ public class ProduitDaoImpl implements ProduitDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM produits" +
-                "inner join achats on achProId=proId" +
-                "inner join magasins on magId=achMagId" +
-                "WHERE magId = ?;");
+        resultat = statement.executeQuery("SELECT * FROM produits inner join achats on achProId=proId inner join magasins on magId=achMagId WHERE magId = ?");
         preparedStatement.setLong(1, listeId);
 
         while( resultat.next()) {
