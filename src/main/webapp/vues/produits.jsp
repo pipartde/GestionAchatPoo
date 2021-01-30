@@ -10,10 +10,10 @@
         <table>
             <thead>
             <tr>
-                <th>produit</th>
-                <th>catégorie</th>
+                <th>Catégorie</th>
+                <th>Produit</th>
+                <th>Quantitée</th>
                 <th>Mesure</th>
-                <th>quantité</th>
                 <th>actions</th>
             </tr>
             </thead>
