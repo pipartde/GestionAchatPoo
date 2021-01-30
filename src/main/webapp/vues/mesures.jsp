@@ -16,7 +16,7 @@
             <tbody>
 
             <c:forEach items="${ListeDesMesures}" var="mesure">                 <%-- Va rechercher les infos depuis le servelt - donc l'objet liste 'mesures' retourné par le daoImpl est renommé 'ListeDesMesures' par le servlet --%>
-                <c:if test="${mesure.mesId != 5}">
+                <c:if test="${mesure.mesId != 1}">
                     <tr>
                         <td>${mesure.mesNom}</td>
                         <td>

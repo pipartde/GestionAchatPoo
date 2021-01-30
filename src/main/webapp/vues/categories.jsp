@@ -15,7 +15,7 @@
 
             <tbody>
             <c:forEach items="${categories}" var="categorie">
-                <c:if test="${categorie.id != 5}">
+                <c:if test="${categorie.id != 1}">
                     <tr>
                         <td>
                                 ${categorie.catNom}
