@@ -31,7 +31,7 @@ public class ServletProduitMod extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     //envoit des données a une page .jsp
         String id = request.getParameter("id");
-        String listeId = request.getParameter("listeId");
+        String magId = request.getParameter("magId");
         Produit produit = null;
         try {
             produit = produitDAO.recuperer(Long.parseLong(id));
@@ -40,7 +40,7 @@ public class ServletProduitMod extends HttpServlet {
             throwables.printStackTrace();
         }
         try {
-            request.setAttribute("listeId", listeId);
+            request.setAttribute("magId", magId);
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
@@ -59,7 +59,7 @@ public class ServletProduitMod extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // récupération des valeurs du formulaire
-        String listeId = request.getParameter("listeId");
+        String magId = request.getParameter("magId");
         String id = request.getParameter("proId");
         String proCatId = request.getParameter("category");
         String proNom = request.getParameter("proNom");
@@ -71,7 +71,8 @@ public class ServletProduitMod extends HttpServlet {
 
         // redirection
         try {
-            request.setAttribute("produits", produitDAO.liste(Long.parseLong(listeId)));
+            request.setAttribute("magId", magId);
+            request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {

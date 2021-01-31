@@ -32,9 +32,9 @@ public class ServletProduitAdd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // servlet envoi des données dans une page .jsp
-
+        String magId = request.getParameter("magId");
         try {
-
+            request.setAttribute("magId", magId);
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
 
@@ -42,7 +42,7 @@ public class ServletProduitAdd extends HttpServlet {
             throwables.printStackTrace();
         }
 
-        request.getRequestDispatcher("vues/produitAdd.jsp").forward(request, response);
+        request.getRequestDispatcher("vues/produit.jsp?magId="+magId).forward(request, response);
     }
 
 
@@ -54,23 +54,24 @@ public class ServletProduitAdd extends HttpServlet {
         // forcer l'UTF-8 dans les échanges
         request.setCharacterEncoding("UTF-8");
 
-        String listeId = request.getParameter("listeId");
+        String magId = request.getParameter("magId");
         String proCatId = request.getParameter("category");
         String proNom = request.getParameter("proNom");
         String proQtt = request.getParameter("quantity");
         String proMesId = request.getParameter("mesures");
 
         // ajout du produit dans la BD
-        produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(listeId));
+        produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));
 
         // redirection
         try {
-            request.setAttribute("produits", produitDAO.liste(Long.parseLong(listeId)));
+            request.setAttribute("magId", magId);
+            request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("vues/produits.jsp").forward(request, response);
+        request.getRequestDispatcher("vues/produits.jsp?magId="+magId).forward(request, response);
     }
 }

@@ -23,18 +23,25 @@ public class ProduitDaoImpl implements ProduitDAO {
         try {
             connection = daoFactory.getConnection();
             String sql = "INSERT INTO produits (proNom, proCatId, proMesId, proQtt) VALUES (?, ?, ?, ?);";
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, produits.getproNom());
             preparedStatement.setLong(2, produits.getProCatId());
             preparedStatement.setLong(3, produits.getProMesId());
             preparedStatement.setDouble(4, produits.getproQtt());
-            long lastInsertedID = preparedStatement.executeUpdate(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement = connection.prepareStatement("INSERT INTO achats (achMagId, achProId) VALUES (?, ?);");
-            preparedStatement.setLong(1, listeId);
-            preparedStatement.setLong(2, lastInsertedID);
             preparedStatement.executeUpdate();
+
+            ResultSet lastInsertedID = preparedStatement.getGeneratedKeys();
+            if(lastInsertedID.next()){
+                long last_Inserted_ID = lastInsertedID.getLong(1);
+                preparedStatement = connection.prepareStatement("INSERT INTO achats (achMagId, achProId) VALUES (?, ?);");
+                preparedStatement.setLong(1, listeId);
+
+                preparedStatement.setLong(2, last_Inserted_ID);
+                preparedStatement.executeUpdate();
+            }
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -47,9 +54,14 @@ public class ProduitDaoImpl implements ProduitDAO {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("DELETE FROM produits WHERE proId = ?;");
-
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
+
+            // supression dans la table achat
+            preparedStatement = connection.prepareStatement("DELETE FROM achats WHERE achProId = ?;");
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -78,9 +90,9 @@ public class ProduitDaoImpl implements ProduitDAO {
         List<Produit> produits = new ArrayList<>();
 
         connection = daoFactory.getConnection();
-        statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM produits inner join achats on achProId=proId inner join magasins on magId=achMagId WHERE magId = ?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM produits inner join achats on achProId=proId inner join magasins on magId=achMagId WHERE magId = ?;");
         preparedStatement.setLong(1, listeId);
+        resultat = preparedStatement.executeQuery();
 
         while( resultat.next()) {
             Long id = resultat.getLong("proId");

@@ -16,9 +16,6 @@
             <li>
                 <a href="mesures" <% if(titre == "Mesures"){ %>class="active"<% } %> >Mesures</a>
             </li>
-            <li>
-                <a href="produits" <% if(titre == "Produits"){ %>class="active"<% } %> >Produits</a>
-            </li>
         </ul>
     </div>
 </nav>

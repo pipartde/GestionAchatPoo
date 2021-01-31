@@ -33,10 +33,10 @@
                     </c:forEach></td>
 
                     <td>
-                        <a href="produitMod?id=${produit.id}&listeId=${listeId}">
+                        <a href="produitMod?id=${produit.id}&magId=${magId}">
                             <i class="fas fa-pen" title="modifier"></i>
                         </a>
-                        <a href="produitSup?id=${produit.id}&listeId=${listeId}">
+                        <a href="produitSup?id=${produit.id}&magId=${magId}">
                             <i class="fas fa-trash" title="supprimer"></i>
                         </a>
                     </td>
@@ -66,12 +66,13 @@
                         </select>
                     </td>
                     <td>
-                        <input type="hidden" name="listeId" value="${listeId}">
+                        <input type="hidden" name="magId" value="${magId}">
                         <input type="submit" value="Ajouter">
                     </td>
                 </tr>
             </form>
         </table>
+        <p><input type="text" value="${magId}"></p>
     </main>
 </div>
 
