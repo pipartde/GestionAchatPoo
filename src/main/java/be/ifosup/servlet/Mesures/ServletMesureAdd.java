@@ -33,8 +33,12 @@ public class ServletMesureAdd extends HttpServlet {
         // Ajout
 
         try {
-            mesureDAO.ajouter(new Mesure(mesNom));
-        } catch (SQLException throwables) {
+            if (mesNom.length() != 0)
+                mesureDAO.ajouter(new Mesure(mesNom));
+            else
+                request.setAttribute("ListeDesMesures", mesureDAO.liste());
+        }
+        catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
