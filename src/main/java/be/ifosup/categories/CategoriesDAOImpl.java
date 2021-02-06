@@ -2,6 +2,7 @@ package be.ifosup.categories;
 
 import be.ifosup.dao.DAOFactory;
 
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,10 @@ public class CategoriesDAOImpl implements CategoriesDAO {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("INSERT INTO categories (catNom) VALUE (?); ");
+            String toInsert = categories.getcatNom();
+            preparedStatement.setString(1, toInsert);
 
-            preparedStatement.setString(1, categories.getcatNom());
 
-            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

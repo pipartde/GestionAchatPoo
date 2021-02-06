@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "ServletCategoriesAdd", urlPatterns = {"/add-categorie"})
@@ -29,7 +30,11 @@ public class ServletCategoriesAdd extends HttpServlet {
         String catNom = request.getParameter("catNom");
 
         // Ajout dans la DB
-        categoriesDAO.ajouter(new Categories(catNom));
+        if (!catNom.equals("")) {
+            categoriesDAO.ajouter(new Categories(catNom));
+        }
+
+
 
 
         // Redirection
