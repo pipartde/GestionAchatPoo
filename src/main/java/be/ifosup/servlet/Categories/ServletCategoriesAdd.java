@@ -32,6 +32,8 @@ public class ServletCategoriesAdd extends HttpServlet {
         // Ajout dans la DB
         if (!catNom.equals("")) {
             categoriesDAO.ajouter(new Categories(catNom));
+
+
         }
 
 
