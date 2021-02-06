@@ -16,6 +16,7 @@ h1{
 
 a:hover{
     color: gray;
+    transition: all 0.3s ease-out;
 }
 
 footer {
@@ -40,7 +41,7 @@ footer p{
 .container {
     background-color: rgba(250, 250, 250, .95);
     box-sizing: border-box;
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 110px);
     width: 800px;
     margin: 20px auto;
     border-radius: 5px 50px;
@@ -60,7 +61,7 @@ html {
 
 nav{
     box-sizing: border-box;
-    height : 80px;
+    height : 50px;
     width: 100%;
     background-color: #3E3E3E;
 }
@@ -69,12 +70,9 @@ nav div{
     width: 800px;
     margin: auto;
     font-size: 30px;
-    padding-top : 45px;
+    padding-top : 15px;
 }
 
-.active{
-    color: rgb(200,200,200);
-}
 
 nav ul {
     display: block;
@@ -87,7 +85,7 @@ nav li{
 
 .right{
     position: relative;
-    top: -35px;
+    top: -25px;
     float: right;
     font-size: 0.7em;
     margin-top: 5px;
@@ -120,4 +118,55 @@ td, th{
     padding: 5px 5px;
     border: 1px solid black;
     font-size: 14px;
+}
+
+.dropbtn {
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    color: #FE7F2D;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: unset;
+    font-family: 'Inter', sans-serif;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    font-size: 1em;
+    padding:0px;
+    background-color: #3E3E3E;
+    min-width: 160px;
+    max-width: 200px;
+    z-index: 1;
+    border-left: 4px solid #FE7F2D;
+}
+
+.dropdown-content a {
+    margin:5px 15px;
+    color: #FE7F2D;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    color: gray;
+}
+
+.active{
+    color: rgb(200,200,200);
 }

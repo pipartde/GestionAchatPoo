@@ -3,19 +3,18 @@
     <div>
         <ul>
             <li>
-                <a href="${pageContext.request.contextPath}" <% if(titre == "Index"){ %>class="active"<% } %> >Gestion Achat</a>
+                <a href="${pageContext.request.contextPath}" <% if(titre == "Index"){ %>class="active"<% } %> ><i class="fas fa-home"></i></a>
             </li>
         </ul>
         <ul class="right">
-            <li>
-               <a href="magasins" <% if(titre == "Magasin"){ %>class="active"<% } %> >Magasins</a>
+            <li class="dropdown">
+                <button class="dropbtn">Options</button>
+                <div class="dropdown-content">
+                    <a href="categories">Catégories</a>
+                    <a href="mesures">Mesures</a>
+                </div>
             </li>
-            <li>
-                <a href="categories" <% if(titre == "Catégories"){ %>class="active"<% } %> >Catégories</a>
-            </li>
-            <li>
-                <a href="mesures" <% if(titre == "Mesures"){ %>class="active"<% } %> >Mesures</a>
-            </li>
+
         </ul>
     </div>
 </nav>
