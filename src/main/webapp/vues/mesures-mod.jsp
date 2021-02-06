@@ -8,8 +8,8 @@
         <h1>Mesures</h1>
         <h2>Modification des mesures</h2>
         <form action="mesures-mod" method="post">
-            <input type="text" name="mesNom" value=${mesure.mesNom}>
-            <input type="hidden" name="mesId" value=${mesure.mesId}>
+            <input type="text" name="mesNom" value="${mesure.mesNom}">
+            <input type="hidden" name="mesId" value="${mesure.mesId}">
             <input type="submit" value="Modifier">
         </form>
     </main>
