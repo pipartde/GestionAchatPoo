@@ -72,7 +72,6 @@
                 </tr>
             </form>
         </table>
-        <p><input type="text" value="${magId}"></p>
     </main>
 </div>
 
