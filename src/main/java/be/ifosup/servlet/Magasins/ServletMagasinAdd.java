@@ -32,15 +32,8 @@ public class ServletMagasinAdd extends HttpServlet {
 
         // ajout du magasin dans la BD
 
-        try {
-            if(!magNom.equals("")){
-                magasinDAO.ajouter( new Magasin(magNom));}
-            else {
-                request.setAttribute("magasins", magasinDAO.liste());
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        if(!magNom.equals("")){
+            magasinDAO.ajouter( new Magasin(magNom));}
 
         // redirection
 
