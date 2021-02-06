@@ -24,6 +24,7 @@ public class CategoriesDAOImpl implements CategoriesDAO {
             preparedStatement = connection.prepareStatement("INSERT INTO categories (catNom) VALUE (?); ");
             String toInsert = categories.getcatNom();
             preparedStatement.setString(1, toInsert);
+            preparedStatement.executeUpdate();
 
 
         } catch (SQLException throwables) {
