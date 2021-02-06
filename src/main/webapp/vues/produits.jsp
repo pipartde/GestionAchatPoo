@@ -1,19 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%! String titre = "Produits" ;%>
-<%@include file="../templates/header.jsp"%>
-<%@include file="../templates/navigation.jsp"%>
+<%! String titre = "Produits";%>
+<%@include file="../templates/header.jsp" %>
+<%@include file="../templates/navigation.jsp" %>
 
 <div class="container">
     <main>
-        <h1>Produits</h1>
-        <h2>Ceci est la page des produits.</h2>
+        <h1>Liste pour le magasin : <c:forEach items="${magasins}" var="magasin">
+            <c:if test="${magasin.magId == magId}">${magasin.magNom}</c:if>
+        </c:forEach> &ensp;<a href="magasins"><i class="fas fa-pen" title="modifier"></i></a></h1>
+
+
+
         <table>
             <thead>
             <tr>
-                <th>Catégorie</th>
+                <th>Catégorie &ensp;<a href="categories"><i class="fas fa-pen" title="modifier"></i></a></th>
                 <th>Produit</th>
                 <th>Quantitée</th>
-                <th>Mesure</th>
+                <th>Mesure &ensp;<a href="mesures"><i class="fas fa-pen" title="modifier"></i></a></th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -72,7 +76,8 @@
                 </tr>
             </form>
         </table>
+
     </main>
 </div>
 
-<%@include file="../templates/footer.jsp"%>
+<%@include file="../templates/footer.jsp" %>
