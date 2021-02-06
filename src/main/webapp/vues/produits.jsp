@@ -60,7 +60,7 @@
                         <input type="text" name="proNom" placeholder="produit" required>
                     </td>
                     <td>
-                        <input type="text" name="quantity" placeholder="Quantités voulue" required>
+                        <input type="number" name="quantity" placeholder="Quantités voulue" required>
                     </td>
                     <td>
                         <select name="mesures">
