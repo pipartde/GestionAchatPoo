@@ -2,6 +2,7 @@ package be.ifosup.servlet.Produits;
 
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.ProduitDAO;
 
@@ -16,12 +17,14 @@ public class ServletProduit extends HttpServlet {
     private ProduitDAO produitDAO;
     private CategoriesDAO categoriesDAO;
     private MesureDAO mesureDAO;
+    private MagasinDAO magasinDAO;
 
     public void init() throws ServletException{
         DAOFactory daoFactory = DAOFactory.getInstance();
         this.produitDAO = daoFactory.getProduitsDAO();
         this.categoriesDAO = daoFactory.getCategoriesDAO();
         this.mesureDAO = daoFactory.getMesuresDAO();
+        this.magasinDAO = daoFactory.getMagasinsDAO();
     }
 
     @Override
@@ -31,6 +34,7 @@ public class ServletProduit extends HttpServlet {
 
 
         try{
+            request.setAttribute("magasins",magasinDAO.liste());
             request.setAttribute("produits",produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("magId", magId);
             request.setAttribute("categories", categoriesDAO.liste());

@@ -20,28 +20,16 @@ public class ServletMagasinAdd extends HttpServlet {
         this.magasinDAO = daoFactory.getMagasinsDAO();
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // forcer l'UTF-8 dans les échanges
-
         request.setCharacterEncoding("UTF-8");
 
         // récupération des valeurs du formulaire
-
         String magNom = request.getParameter("magNom");
 
         // ajout du magasin dans la BD
-        
-        try {
-            if (magNom.length() != 0)
-                magasinDAO.ajouter( new Magasin(magNom));
-            else
-                request.setAttribute("magasins", magasinDAO.liste());
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        // redirection
+        magasinDAO.ajouter( new Magasin(magNom));
 
+        // redirection
         try {
             request.setAttribute("magasins", magasinDAO.liste());
         } catch (SQLException throwables) {
