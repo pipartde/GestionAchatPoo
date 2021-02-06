@@ -31,7 +31,6 @@ public class ServletProduit extends HttpServlet {
 
 
         try{
-            System.out.println(magId);
             request.setAttribute("produits",produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("magId", magId);
             request.setAttribute("categories", categoriesDAO.liste());
