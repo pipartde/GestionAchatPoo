@@ -36,10 +36,14 @@ public class CategoriesDAOImpl implements CategoriesDAO {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("DELETE FROM categories WHERE catId = ?;");
-
             preparedStatement.setLong(1, catId);
-
             preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("UPDATE produits SET proCatId = 1 WHERE  proCatId = ?;");
+            preparedStatement.setLong(1, catId);
+            preparedStatement.executeUpdate();
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
