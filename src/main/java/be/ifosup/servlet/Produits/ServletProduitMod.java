@@ -2,6 +2,7 @@ package be.ifosup.servlet.Produits;
 
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.Produit;
 import be.ifosup.produit.ProduitDAO;
@@ -18,12 +19,14 @@ public class ServletProduitMod extends HttpServlet {
     private ProduitDAO produitDAO;
     private CategoriesDAO categoriesDAO;
     private MesureDAO mesureDAO;
+    private MagasinDAO magasinDAO;
 
     public void init() throws ServletException{
         DAOFactory daoFactory = DAOFactory.getInstance();
         this.produitDAO = daoFactory.getProduitsDAO();
         this.categoriesDAO = daoFactory.getCategoriesDAO();
         this.mesureDAO = daoFactory.getMesuresDAO();
+        this.magasinDAO = daoFactory.getMagasinsDAO();
     }
 
 
@@ -43,6 +46,7 @@ public class ServletProduitMod extends HttpServlet {
             request.setAttribute("magId", magId);
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
+            request.setAttribute("magasins", magasinDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -75,6 +79,7 @@ public class ServletProduitMod extends HttpServlet {
             request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
+            request.setAttribute("magasins", magasinDAO.liste());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
