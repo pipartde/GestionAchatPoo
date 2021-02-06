@@ -29,6 +29,7 @@ public class ServletCategoriesAdd extends HttpServlet {
         // Récupération des champs
         String catNom = request.getParameter("catNom").trim();
 
+
         // Ajout dans la DB
         if (!catNom.equals("")) {
             categoriesDAO.ajouter(new Categories(catNom));
