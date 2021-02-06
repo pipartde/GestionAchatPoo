@@ -3,7 +3,7 @@
     <div>
         <ul>
             <li>
-                <a href="${pageContext.request.contextPath}" <% if(titre == "Index"){ %>class="active"<% } %> >Gestion Achat</a>
+                <a href="${pageContext.request.contextPath}" <% if(titre == "Index"){ %>class="active"<% } %> ><i class="fas fa-home"></i></a>
             </li>
         </ul>
         <ul class="right">

@@ -41,7 +41,7 @@ footer p{
 .container {
     background-color: rgba(250, 250, 250, .95);
     box-sizing: border-box;
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 110px);
     width: 800px;
     margin: 20px auto;
     border-radius: 5px 50px;
@@ -61,7 +61,7 @@ html {
 
 nav{
     box-sizing: border-box;
-    height : 80px;
+    height : 50px;
     width: 100%;
     background-color: #3E3E3E;
 }
@@ -70,7 +70,7 @@ nav div{
     width: 800px;
     margin: auto;
     font-size: 30px;
-    padding-top : 45px;
+    padding-top : 15px;
 }
 
 
@@ -85,7 +85,7 @@ nav li{
 
 .right{
     position: relative;
-    top: -35px;
+    top: -25px;
     float: right;
     font-size: 0.7em;
     margin-top: 5px;
