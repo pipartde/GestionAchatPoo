@@ -23,17 +23,23 @@ public class ServletMagasinMod extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // forcer l'UTF-8 dans les échanges
+
         request.setCharacterEncoding("UTF-8");
 
         // récupération des valeurs du formulaire
+
         String magId = request.getParameter("magId");
         String magNom = request.getParameter("magNom");
 
         // ajout du magasin dans la BD
-        magasinDAO.modifier(Long.parseLong(magId), magNom);
+
+        if(!magNom.equals("")){
+            magasinDAO.modifier(Long.parseLong(magId), magNom);}
 
         // redirection
+
         try {
             request.setAttribute("magasins", magasinDAO.liste());
         } catch (SQLException throwables) {
@@ -43,7 +49,9 @@ public class ServletMagasinMod extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // récupération Id
+
         String magId = request.getParameter("magId");
         Magasin magasin = null;
         try {

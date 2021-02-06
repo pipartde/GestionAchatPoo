@@ -22,7 +22,7 @@
                         </td>
                         <td>
                             <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
-                            <a href="sup-categorie?id=${categorie.id}"><i class="fas fa-trash" title="supprimer"></i></a>
+                            <a href="sup-categorie?id=${categorie.id}" onclick="return confirm('Êtes vous sûr(e) ?');"><i class="fas fa-trash" title="supprimer"></i></a>
                         </td>
                     </tr>
                 </c:if>
@@ -32,7 +32,7 @@
 
                 <tr>
                     <td>
-                        <label><input type="text" name="catNom" placeholder="Nouvelle Catégorie"></label>
+                        <label><input type="text" name="catNom" placeholder="Nouvelle Catégorie" required></label>
                     </td>
 
                     <td>

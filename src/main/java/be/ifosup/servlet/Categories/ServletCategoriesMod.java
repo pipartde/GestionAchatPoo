@@ -3,6 +3,7 @@ package be.ifosup.servlet.Categories;
 import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.magasin.Magasin;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -36,17 +37,23 @@ public class ServletCategoriesMod extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // Formater en UTF-8
+
         request.setCharacterEncoding("UTF-8");
 
         // Récupérations des champs
+
         String catId = request.getParameter("catId");
         String catNom = request.getParameter("catNom");
 
         // Modification dans la DB
-        categoriesDAO.modifier(Long.parseLong(catId), catNom);
+        
+        if(!catNom.equals("")){
+            categoriesDAO.modifier(Long.parseLong(catId), catNom);}
 
         // Redirection
+
         try {
             request.setAttribute("categories", categoriesDAO.liste());
         } catch (SQLException throwables) {
