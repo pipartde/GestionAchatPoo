@@ -40,7 +40,7 @@
                         <a href="produitMod?id=${produit.id}&magId=${magId}">
                             <i class="fas fa-pen" title="modifier"></i>
                         </a>
-                        <a href="produitSup?id=${produit.id}&magId=${magId}">
+                        <a href="produitSup?id=${produit.id}&magId=${magId}" onclick="return confirm('Êtes vous sûr(e) ?')">
                             <i class="fas fa-trash" title="supprimer"></i>
                         </a>
                     </td>
@@ -57,10 +57,10 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="proNom" placeholder="produit">
+                        <input type="text" name="proNom" placeholder="produit" required>
                     </td>
                     <td>
-                        <input type="text" name="quantity" placeholder="Quantités voulue">
+                        <input type="text" name="quantity" placeholder="Quantités voulue" required>
                     </td>
                     <td>
                         <select name="mesures">

@@ -23,7 +23,7 @@
                             <a href="mesures-mod?mesId=${mesure.mesId}">
                                 <i class="fas fa-pen" title="modifier"></i>
                             </a>
-                            <a href="mesures-sup?mesId=${mesure.mesId}">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
+                            <a href="mesures-sup?mesId=${mesure.mesId}" onclick="return confirm('Êtes vous sûr(e) ?')">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
                                 <i class="fas fa-trash" title="supprimer"></i>
                             </a>
                         </td>
@@ -35,7 +35,7 @@
             <form action="mesures-add" method="post">
                 <tr>
                     <td>
-                        <input type="text" name="mesNom" placeholder="Nouvelle mesure">
+                        <input type="text" name="mesNom" placeholder="Nouvelle mesure" required>
                     </td>
                     <td>
                         <input type="submit" class="btn btn-primary btn-block" value="Ajouter">

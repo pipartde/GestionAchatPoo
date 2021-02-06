@@ -21,7 +21,7 @@
                         <a href="modMagasin?magId=${magasin.magId}">
                             <i class="fas fa-pen" title="modifier"></i>
                         </a>
-                        <a href="supMagasin?id=${magasin.magId}">
+                        <a href="supMagasin?id=${magasin.magId}" onclick="return confirm('Êtes vous sûr(e) ?')">
                             <i class="fas fa-trash" title="supprimer"></i>
                         </a>
                     </td>
@@ -31,7 +31,7 @@
             <form action="addMagasin" method="post">
                 <tr>
                     <td>
-                        <input type="text" name="magNom" placeholder="Nouveau magasin">
+                        <input type="text" name="magNom" placeholder="Nouveau magasin" required>
                     </td>
                     <td>
                         <input type="submit" class="btn btn-primary btn-block" value="Ajouter">
