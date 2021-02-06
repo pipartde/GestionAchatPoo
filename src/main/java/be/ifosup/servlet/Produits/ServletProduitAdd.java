@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 @WebServlet(name = "ServletProduitAdd", urlPatterns = {"/produitAdd"})
 public class ServletProduitAdd extends HttpServlet {
@@ -67,24 +68,16 @@ public class ServletProduitAdd extends HttpServlet {
 
         // ajout du produit dans la BD
 
-        try {
-            if(!proNom.equals("") && !proQtt.equals("")){
-                produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));}
-            else {
-                request.setAttribute("magId", magId);
-                request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
-                request.setAttribute("categories", categoriesDAO.liste());
-                request.setAttribute("mesures", mesureDAO.liste());
-                request.setAttribute("magasins", magasinDAO.liste());
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+
+        if(!proNom.equals("") && !proQtt.equals("") && isStringInteger(proQtt,10)){
+            produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));
         }
+
+
 
         // redirection
 
         try {
-
             request.setAttribute("magId", magId);
             request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
             request.setAttribute("categories", categoriesDAO.liste());
@@ -95,4 +88,12 @@ public class ServletProduitAdd extends HttpServlet {
         }
         request.getRequestDispatcher("vues/produits.jsp?magId="+magId).forward(request, response);
     }
+
+    public static boolean isStringInteger(String stringToCheck, int radix) {
+        Scanner sc = new Scanner(stringToCheck.trim());
+        if(!sc.hasNextInt(radix)) return false;
+        sc.nextInt(radix);
+        return !sc.hasNext();
+    }
+
 }

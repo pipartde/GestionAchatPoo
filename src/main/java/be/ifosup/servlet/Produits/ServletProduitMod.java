@@ -6,12 +6,12 @@ import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.Produit;
 import be.ifosup.produit.ProduitDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 @WebServlet(name = "ServletProduitMod", urlPatterns = {"/produitMod"})
 public class ServletProduitMod extends HttpServlet {
@@ -74,19 +74,11 @@ public class ServletProduitMod extends HttpServlet {
 
         // modification du produit dans la BD
 
-        try {
-            if(!proNom.equals("") && !proQtt.equals("")){
-                produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));}
-            else {
-                request.setAttribute("magId", magId);
-                request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
-                request.setAttribute("categories", categoriesDAO.liste());
-                request.setAttribute("mesures", mesureDAO.liste());
-                request.setAttribute("magasins", magasinDAO.liste());
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
+        if(!proNom.equals("") && !proQtt.equals("") && isStringInteger(proQtt,10)){
+            produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));}
+
+
 
         // redirection
 
@@ -100,5 +92,12 @@ public class ServletProduitMod extends HttpServlet {
             throwables.printStackTrace();
         }
         request.getRequestDispatcher("vues/produits.jsp").forward(request, response);
+    }
+
+    public static boolean isStringInteger(String stringToCheck, int radix) {
+        Scanner sc = new Scanner(stringToCheck.trim());
+        if(!sc.hasNextInt(radix)) return false;
+        sc.nextInt(radix);
+        return !sc.hasNext();
     }
 }
