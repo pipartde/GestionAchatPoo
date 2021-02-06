@@ -3,6 +3,7 @@ package be.ifosup.servlet.Produits;
 import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.mesure.Mesure;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.Produit;
 import be.ifosup.produit.ProduitDAO;
@@ -56,14 +57,27 @@ public class ServletProduitAdd extends HttpServlet {
 
         String magId = request.getParameter("magId");
         String proCatId = request.getParameter("category");
-        String proNom = request.getParameter("proNom");
-        String proQtt = request.getParameter("quantity");
+        String proNom = request.getParameter("proNom").trim();
+        String proQtt = request.getParameter("quantity").trim();
         String proMesId = request.getParameter("mesures");
 
         // ajout du produit dans la BD
-        produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));
+
+        try {
+            if(!proNom.equals("") && !proQtt.equals("")){
+                produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));}
+            else {
+                request.setAttribute("magId", magId);
+                request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
+                request.setAttribute("categories", categoriesDAO.liste());
+                request.setAttribute("mesures", mesureDAO.liste());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         // redirection
+
         try {
             request.setAttribute("magId", magId);
             request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));

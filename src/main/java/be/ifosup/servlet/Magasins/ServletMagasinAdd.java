@@ -28,7 +28,7 @@ public class ServletMagasinAdd extends HttpServlet {
 
         // récupération des valeurs du formulaire
 
-        String magNom = request.getParameter("magNom");
+        String magNom = request.getParameter("magNom").trim();
 
         // ajout du magasin dans la BD
 

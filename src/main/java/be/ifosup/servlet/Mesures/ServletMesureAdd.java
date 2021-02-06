@@ -29,7 +29,7 @@ public class ServletMesureAdd extends HttpServlet {
 
         // Champs
 
-        String mesNom = request.getParameter("mesNom");
+        String mesNom = request.getParameter("mesNom").trim();
 
         // Ajout
 
