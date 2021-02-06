@@ -60,20 +60,36 @@ public class ServletProduitMod extends HttpServlet {
         //reçoit des données d'un formulaire
 
         // forcer l'UTF-8 dans les échanges
+
         request.setCharacterEncoding("UTF-8");
 
         // récupération des valeurs du formulaire
+
         String magId = request.getParameter("magId");
         String id = request.getParameter("proId");
         String proCatId = request.getParameter("category");
-        String proNom = request.getParameter("proNom");
-        String proQtt = request.getParameter("quantity");
+        String proNom = request.getParameter("proNom").trim();
+        String proQtt = request.getParameter("quantity").trim();
         String proMesId = request.getParameter("mesures");
 
         // modification du produit dans la BD
-        produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));
+
+        try {
+            if(!proNom.equals("") && !proQtt.equals("")){
+                produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));}
+            else {
+                request.setAttribute("magId", magId);
+                request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
+                request.setAttribute("categories", categoriesDAO.liste());
+                request.setAttribute("mesures", mesureDAO.liste());
+                request.setAttribute("magasins", magasinDAO.liste());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         // redirection
+
         try {
             request.setAttribute("magId", magId);
             request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
