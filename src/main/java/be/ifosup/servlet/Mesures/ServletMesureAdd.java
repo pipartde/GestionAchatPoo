@@ -1,6 +1,7 @@
 package be.ifosup.servlet.Mesures;
 
 import be.ifosup.dao.DAOFactory;
+import be.ifosup.magasin.Magasin;
 import be.ifosup.mesure.Mesure;
 import be.ifosup.mesure.MesureDAO;
 
@@ -33,7 +34,11 @@ public class ServletMesureAdd extends HttpServlet {
         // Ajout
 
         try {
-            mesureDAO.ajouter(new Mesure(mesNom));
+            if(!mesNom.equals("")){
+                mesureDAO.ajouter(new Mesure(mesNom));}
+            else {
+                request.setAttribute("ListeDesMesures", mesureDAO.liste());
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
