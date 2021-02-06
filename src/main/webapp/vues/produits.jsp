@@ -7,7 +7,7 @@
     <main>
         <h1>Liste pour le magasin : <c:forEach items="${magasins}" var="magasin">
             <c:if test="${magasin.magId == magId}">${magasin.magNom}</c:if>
-        </c:forEach> &ensp;<a href="magasins"><i class="fas fa-pen" title="modifier"></i></a></h1>
+        </c:forEach> &ensp;<a href="${pageContext.request.contextPath}"><i class="fas fa-angle-double-left" title="modifier"></i></a></h1>
 
 
 
