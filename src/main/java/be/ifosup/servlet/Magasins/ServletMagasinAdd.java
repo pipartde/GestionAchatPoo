@@ -49,6 +49,6 @@ public class ServletMagasinAdd extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("vues/magasins.jsp").forward(request, response);
+        request.getRequestDispatcher("vues/index.jsp").forward(request, response);
     }
 }
