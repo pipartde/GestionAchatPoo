@@ -54,13 +54,16 @@ public class ServletMesureMod extends HttpServlet {
 
         // Ajout
 
-        try {
-            mesureDAO.modifier(Long.parseLong(mesId), mesNom);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        if(!mesNom.equals("")){
+            try {
+                mesureDAO.modifier(Long.parseLong(mesId), mesNom);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         // Redirection
+
         try {
             request.setAttribute("ListeDesMesures", mesureDAO.liste());
         } catch (SQLException throwables) {
