@@ -45,7 +45,7 @@ public class ServletCategoriesMod extends HttpServlet {
         // Récupérations des champs
 
         String catId = request.getParameter("catId");
-        String catNom = request.getParameter("catNom");
+        String catNom = request.getParameter("catNom").trim();
 
         // Modification dans la DB
         

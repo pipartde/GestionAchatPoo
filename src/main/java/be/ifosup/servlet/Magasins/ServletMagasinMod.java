@@ -31,7 +31,7 @@ public class ServletMagasinMod extends HttpServlet {
         // récupération des valeurs du formulaire
 
         String magId = request.getParameter("magId");
-        String magNom = request.getParameter("magNom");
+        String magNom = request.getParameter("magNom").trim();
 
         // ajout du magasin dans la BD
 
