@@ -1,10 +1,8 @@
 package be.ifosup.servlet.Produits;
 
-import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
 import be.ifosup.magasin.MagasinDAO;
-import be.ifosup.mesure.Mesure;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.Produit;
 import be.ifosup.produit.ProduitDAO;
@@ -16,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 @WebServlet(name = "ServletProduitAdd", urlPatterns = {"/produitAdd"})
 public class ServletProduitAdd extends HttpServlet {
+
     private ProduitDAO produitDAO;
     private CategoriesDAO categoriesDAO;
     private MesureDAO mesureDAO;
@@ -32,7 +30,6 @@ public class ServletProduitAdd extends HttpServlet {
         this.mesureDAO = daoFactory.getMesuresDAO();
         this.magasinDAO = daoFactory.getMagasinsDAO();
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,10 +45,8 @@ public class ServletProduitAdd extends HttpServlet {
             throwables.printStackTrace();
         }
 
-        request.getRequestDispatcher("vues/produit.jsp?magId="+magId).forward(request, response);
+        request.getRequestDispatcher("vues/produit.jsp?magId=" + magId).forward(request, response);
     }
-
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,40 +55,39 @@ public class ServletProduitAdd extends HttpServlet {
         // forcer l'UTF-8 dans les échanges
         request.setCharacterEncoding("UTF-8");
 
-        String magId = request.getParameter("magId");
-        String proCatId = request.getParameter("category");
-        String proNom = request.getParameter("proNom").trim();
-        String proQtt = request.getParameter("quantity").trim();
-        String proMesId = request.getParameter("mesures");
-
-        // ajout du produit dans la BD
-
-
-        if(!proNom.equals("") && !proQtt.equals("") && isStringInteger(proQtt,10)){
-            produitDAO.ajouter( new Produit(proNom, Long.parseLong(proCatId), Long.parseLong(proMesId), Double.parseDouble(proQtt)),Long.parseLong(magId));
-        }
-
-
-
-        // redirection
+        Long magId = Long.parseLong(request.getParameter("magId"));
 
         try {
-            request.setAttribute("magId", magId);
-            request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
-            request.setAttribute("categories", categoriesDAO.liste());
-            request.setAttribute("mesures", mesureDAO.liste());
-            request.setAttribute("magasins", magasinDAO.liste());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Long proCatId = Long.parseLong(request.getParameter("category"));
+            String proNom = request.getParameter("proNom").trim();
+            Double proQtt = Double.parseDouble(request.getParameter("quantity").trim());
+            Long proMesId = Long.parseLong(request.getParameter("mesures"));
+
+            // ajout du produit dans la BD
+
+            if (!proNom.equals("") && isGreaterZero(proQtt)) {
+                produitDAO.ajouter(new Produit(proNom, proCatId, proMesId, proQtt), magId);
+            }
+
+        } catch (NumberFormatException e) {
+            // todo : ajouter un message à retourner sur la .jsp en cas d'erreur??
+        } finally {
+            // redirection
+            try {
+                request.setAttribute("magId", magId);
+                request.setAttribute("produits", produitDAO.liste(magId));
+                request.setAttribute("categories", categoriesDAO.liste());
+                request.setAttribute("mesures", mesureDAO.liste());
+                request.setAttribute("magasins", magasinDAO.liste());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            request.getRequestDispatcher("vues/produits.jsp?magId=" + magId).forward(request, response);
         }
-        request.getRequestDispatcher("vues/produits.jsp?magId="+magId).forward(request, response);
     }
 
-    public static boolean isStringInteger(String stringToCheck, int radix) {
-        Scanner sc = new Scanner(stringToCheck.trim());
-        if(!sc.hasNextInt(radix)) return false;
-        sc.nextInt(radix);
-        return !sc.hasNext();
-    }
 
+    protected static boolean isGreaterZero(Double toCheck) {
+        return toCheck > 0;
+    }
 }

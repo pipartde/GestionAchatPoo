@@ -6,12 +6,12 @@ import be.ifosup.magasin.MagasinDAO;
 import be.ifosup.mesure.MesureDAO;
 import be.ifosup.produit.Produit;
 import be.ifosup.produit.ProduitDAO;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 @WebServlet(name = "ServletProduitMod", urlPatterns = {"/produitMod"})
 public class ServletProduitMod extends HttpServlet {
@@ -21,7 +21,7 @@ public class ServletProduitMod extends HttpServlet {
     private MesureDAO mesureDAO;
     private MagasinDAO magasinDAO;
 
-    public void init() throws ServletException{
+    public void init() throws ServletException {
         DAOFactory daoFactory = DAOFactory.getInstance();
         this.produitDAO = daoFactory.getProduitsDAO();
         this.categoriesDAO = daoFactory.getCategoriesDAO();
@@ -32,7 +32,7 @@ public class ServletProduitMod extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //envoit des données a une page .jsp
+        //envoit des données a une page .jsp
         String id = request.getParameter("id");
         String magId = request.getParameter("magId");
         Produit produit = null;
@@ -52,7 +52,7 @@ public class ServletProduitMod extends HttpServlet {
         }
 
         request.setAttribute("produit", produit);
-        request.getRequestDispatcher("/vues/produitMod.jsp").forward(request,response);
+        request.getRequestDispatcher("/vues/produitMod.jsp").forward(request, response);
     }
 
     @Override
@@ -65,39 +65,40 @@ public class ServletProduitMod extends HttpServlet {
 
         // récupération des valeurs du formulaire
 
-        String magId = request.getParameter("magId");
-        String id = request.getParameter("proId");
-        String proCatId = request.getParameter("category");
-        String proNom = request.getParameter("proNom").trim();
-        String proQtt = request.getParameter("quantity").trim();
-        String proMesId = request.getParameter("mesures");
-
-        // modification du produit dans la BD
-
-
-        if(!proNom.equals("") && !proQtt.equals("") && isStringInteger(proQtt,10)){
-            produitDAO.modifier(Long.parseLong(id), proNom, Long.parseLong(proCatId),Long.parseLong(proMesId),Double.parseDouble(proQtt));}
-
-
-
-        // redirection
+        Long magId = Long.parseLong(request.getParameter("magId"));
 
         try {
-            request.setAttribute("magId", magId);
-            request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
-            request.setAttribute("categories", categoriesDAO.liste());
-            request.setAttribute("mesures", mesureDAO.liste());
-            request.setAttribute("magasins", magasinDAO.liste());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Long id = Long.parseLong(request.getParameter("proId"));
+            Long proCatId = Long.parseLong(request.getParameter("category"));
+            String proNom = request.getParameter("proNom").trim();
+            Double proQtt = Double.parseDouble(request.getParameter("quantity").trim());
+            Long proMesId = Long.parseLong(request.getParameter("mesures"));
+
+            // modification du produit dans la BD
+
+            if (!proNom.equals("") && isGreaterZero(proQtt)) {
+                produitDAO.modifier(id, proNom, proCatId, proMesId, proQtt);
+            }
+
+        } catch (NumberFormatException e) {
+            // todo : ajouter un message à retourner sur la .jsp en cas d'erreur??
+        } finally {
+            // redirection
+            try {
+                request.setAttribute("magId", magId);
+                request.setAttribute("produits", produitDAO.liste(magId));
+                request.setAttribute("categories", categoriesDAO.liste());
+                request.setAttribute("mesures", mesureDAO.liste());
+                request.setAttribute("magasins", magasinDAO.liste());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            request.getRequestDispatcher("vues/produits.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("vues/produits.jsp").forward(request, response);
     }
 
-    public static boolean isStringInteger(String stringToCheck, int radix) {
-        Scanner sc = new Scanner(stringToCheck.trim());
-        if(!sc.hasNextInt(radix)) return false;
-        sc.nextInt(radix);
-        return !sc.hasNext();
+
+    protected static boolean isGreaterZero(Double toCheck) {
+        return toCheck > 0;
     }
 }
