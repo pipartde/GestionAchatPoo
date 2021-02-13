@@ -17,7 +17,7 @@
                 <th>Catégorie &ensp;<a href="categories?mag_id=${magId}"><i class="fas fa-pen" title="modifier"></i></a></th>
                 <th>Produit</th>
                 <th>Quantitée</th>
-                <th>Mesure &ensp;<a href="mesures?mag_id=${magId}""><i class="fas fa-pen" title="modifier"></i></a></th>
+                <th>Mesure &ensp;<a href="mesures?mag_id=${magId}"><i class="fas fa-pen" title="modifier"></i></a></th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -60,7 +60,7 @@
                         <input type="text" name="proNom" placeholder="produit" required>
                     </td>
                     <td>
-                        <input type="number" name="quantity" placeholder="Quantités voulue" required>
+                        <input id="quantity" type="number" step="0.001" name="quantity" placeholder="Quantités voulue" title="Veuillez entrer une valeur positive" required>
                     </td>
                     <td>
                         <select name="mesures">
@@ -71,7 +71,7 @@
                     </td>
                     <td>
                         <input type="hidden" name="magId" value="${magId}">
-                        <input type="submit" value="Ajouter">
+                        <input onclick="checkQuantity()" type="submit" value="Ajouter">
                     </td>
                 </tr>
             </form>
@@ -79,5 +79,14 @@
 
     </main>
 </div>
+
+<script>
+    function checkQuantity() {
+        if (document.getElementById("quantity").value <= 0) {
+            alert("Veuillez rentrer une valeur positive");
+        }
+    }
+</script>
+
 
 <%@include file="../templates/footer.jsp" %>
