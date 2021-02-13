@@ -75,7 +75,7 @@ public class MagasinDaoImpl implements MagasinDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM magasins;");
+        resultat = statement.executeQuery("SELECT * FROM magasins ORDER BY magNom ASC;");
 
         while( resultat.next()) {
             Long magId = resultat.getLong("magId");

@@ -87,7 +87,7 @@ public class CategoriesDAOImpl implements CategoriesDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM categories");
+        resultat = statement.executeQuery("SELECT * FROM categories ORDER BY catId;");
 
         while (resultat.next()) {
             Long catId = resultat.getLong("catId");

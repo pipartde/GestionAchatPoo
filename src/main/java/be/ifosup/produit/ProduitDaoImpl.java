@@ -90,7 +90,7 @@ public class ProduitDaoImpl implements ProduitDAO {
         List<Produit> produits = new ArrayList<>();
 
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("SELECT * FROM produits inner join achats on achProId=proId inner join magasins on magId=achMagId WHERE magId = ?;");
+        preparedStatement = connection.prepareStatement("SELECT * FROM produits inner join achats on achProId=proId inner join magasins on magId=achMagId WHERE magId = ? ORDER BY proId;");
         preparedStatement.setLong(1, listeId);
         resultat = preparedStatement.executeQuery();
 
@@ -112,7 +112,7 @@ public class ProduitDaoImpl implements ProduitDAO {
     public Produit recuperer(Long proId) throws SQLException{
 
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("SELECT * FROM produits WHERE proId = ? ORDER BY proId;");
+        preparedStatement = connection.prepareStatement("SELECT * FROM produits WHERE proId = ?;");
         preparedStatement.setLong(1, proId);
         resultat = preparedStatement.executeQuery();
 

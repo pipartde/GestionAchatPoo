@@ -19,7 +19,7 @@ public class MesureDaoImpl implements MesureDAO {
     @Override
     public void ajouter(Mesure mesure) throws SQLException {
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("INSERT INTO mesures (mesNom) VALUE (?)");
+        preparedStatement = connection.prepareStatement("INSERT INTO mesures (mesNom) VALUE (?);");
 
         preparedStatement.setString(1, mesure.getMesNom());
 
@@ -30,7 +30,7 @@ public class MesureDaoImpl implements MesureDAO {
     public void supprimer(Long mesId) throws SQLException {
         connection = daoFactory.getConnection();
 
-        preparedStatement = connection.prepareStatement("DELETE FROM mesures WHERE mesId = ?");
+        preparedStatement = connection.prepareStatement("DELETE FROM mesures WHERE mesId = ?;");
 
         preparedStatement.setLong(1, mesId);
         preparedStatement.executeUpdate();
@@ -54,7 +54,7 @@ public class MesureDaoImpl implements MesureDAO {
 
         connection = daoFactory.getConnection();
         statement = connection.createStatement();
-        resultat = statement.executeQuery("SELECT * FROM mesures");
+        resultat = statement.executeQuery("SELECT * FROM mesures ORDER BY mesId;");
 
         while ( resultat.next()){
             Long mesId = resultat.getLong("mesId");
@@ -72,7 +72,7 @@ public class MesureDaoImpl implements MesureDAO {
     public Mesure recuperer(Long mesId) throws SQLException {
 
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("SELECT mesNom FROM mesures WHERE mesId = ?");
+        preparedStatement = connection.prepareStatement("SELECT mesNom FROM mesures WHERE mesId = ?;");
         preparedStatement.setLong(1, mesId);
         resultat = preparedStatement.executeQuery();
 
