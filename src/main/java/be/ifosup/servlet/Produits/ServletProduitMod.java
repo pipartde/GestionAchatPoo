@@ -70,7 +70,7 @@ public class ServletProduitMod extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("proId"));
             Long proCatId = Long.parseLong(request.getParameter("category"));
-            String proNom = request.getParameter("proNom").trim();
+            String proNom = convertHtmlSpecialChars(request.getParameter("proNom").trim());
             Double proQtt = Double.parseDouble(request.getParameter("quantity").trim());
             Long proMesId = Long.parseLong(request.getParameter("mesures"));
 
@@ -100,5 +100,32 @@ public class ServletProduitMod extends HttpServlet {
 
     protected static boolean isGreaterZero(Double toCheck) {
         return toCheck > 0;
+    }
+
+    public static String convertHtmlSpecialChars(String source) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < source.length(); i++) {
+            char c = source.charAt(i);
+            switch (c) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '"':
+                    sb.append("&quot;");
+                    break;
+                case '\'':
+                    sb.append("&apos;");
+                    break;
+                default:
+                    sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 }
