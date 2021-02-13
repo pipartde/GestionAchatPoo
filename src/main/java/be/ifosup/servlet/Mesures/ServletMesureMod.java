@@ -50,7 +50,7 @@ public class ServletMesureMod extends HttpServlet {
         // Champs
 
         String mesId = request.getParameter("mesId");
-        String mesNom = request.getParameter("mesNom");
+        String mesNom = request.getParameter("mesNom").trim();
 
         // Ajout
 
