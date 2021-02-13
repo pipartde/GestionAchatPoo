@@ -4,7 +4,7 @@
 <%! String titre = "Mesures" ;%>
 <div class="container">
     <main>
-        <h1>Mesures</h1>
+        <h1>Mesures <c:if test="${magId != null}"><a href="produits?magId=${magId}"><i class="fas fa-angle-double-left" title="modifier"></i></a></c:if></h1>
 
         <table>
             <thead>
@@ -20,10 +20,10 @@
                     <tr>
                         <td>${mesure.mesNom}</td>
                         <td>
-                            <a href="mesures-mod?mesId=${mesure.mesId}">
+                            <a href="mesures-mod?mesId=${mesure.mesId}<c:if test="${magId != null}">&mag_id=${magId}</c:if>">
                                 <i class="fas fa-pen" title="modifier"></i>
                             </a>
-                            <a href="mesures-sup?mesId=${mesure.mesId}" onclick="return confirm('Êtes vous sûr(e) ?')">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
+                            <a href="mesures-sup?mesId=${mesure.mesId}<c:if test="${magId != null}">&mag_id=${magId}</c:if>" onclick="return confirm('Êtes vous sûr(e) ?')">            <%-- ATTENTION à l'url 'mesId=x' -> Il lit dans le servlet le parameter url recu --%>
                                 <i class="fas fa-trash" title="supprimer"></i>
                             </a>
                         </td>
@@ -36,6 +36,7 @@
                 <tr>
                     <td>
                         <input type="text" name="mesNom" placeholder="Nouvelle mesure" required>
+                        <c:if test="${magId != null}"><input type="hidden" name="mag_id" value="${magId}"></c:if>
                     </td>
                     <td>
                         <input type="submit" class="btn btn-primary btn-block" value="Ajouter">

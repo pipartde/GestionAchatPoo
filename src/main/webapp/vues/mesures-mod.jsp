@@ -10,6 +10,7 @@
         <form action="mesures-mod" method="post">
             <input type="text" name="mesNom" value="${mesure.mesNom}">
             <input type="hidden" name="mesId" value="${mesure.mesId}">
+            <c:if test="${magId != null}"><input type="hidden" name="mag_id" value="${magId}"></c:if>
             <input type="submit" value="Modifier">
         </form>
     </main>

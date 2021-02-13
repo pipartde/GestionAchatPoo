@@ -25,6 +25,13 @@ public class ServletMesureAdd extends HttpServlet {
 
         // Forcer utf8
         request.setCharacterEncoding("UTF-8");
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
 
         // Champs
 
