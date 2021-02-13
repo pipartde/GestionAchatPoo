@@ -47,7 +47,7 @@
                 </tr>
             </c:forEach>
             </tbody>
-            <form action="produitAdd" method="post">
+            <form id="ajoutProduit" action="produitAdd" method="post">
                 <tr>
                     <td>
                         <select name="category">
@@ -71,21 +71,26 @@
                     </td>
                     <td>
                         <input type="hidden" name="magId" value="${magId}">
-                        <input onclick="checkQuantity()" type="submit" value="Ajouter">
+                        <input type="submit" value="Ajouter">
                     </td>
                 </tr>
             </form>
         </table>
-
     </main>
 </div>
-
 <script>
-    function checkQuantity() {
-        if (document.getElementById("quantity").value <= 0) {
-            alert("Veuillez rentrer une valeur positive");
-        }
-    }
+    document.getElementById("ajoutProduit").addEventListener("submit", function (e){
+
+        if (document.getElementById("quantity").value < 0) {
+            document.getElementById("quantity").value = document.getElementById("quantity").value * -1;
+
+        } else if (document.getElementById("quantity").value == 0) {
+
+                alert("Veuillez rentrer une valeur positive");
+                e.preventDefault();
+            }
+
+    })
 </script>
 
 

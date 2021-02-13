@@ -112,7 +112,7 @@ public class ProduitDaoImpl implements ProduitDAO {
     public Produit recuperer(Long proId) throws SQLException{
 
         connection = daoFactory.getConnection();
-        preparedStatement = connection.prepareStatement("SELECT * FROM produits WHERE proID = ?;");
+        preparedStatement = connection.prepareStatement("SELECT * FROM produits WHERE proId = ? ORDER BY proId;");
         preparedStatement.setLong(1, proId);
         resultat = preparedStatement.executeQuery();
 
