@@ -33,7 +33,6 @@ public class ServletMesureMod extends HttpServlet {
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);
-            System.out.println(magId);
         } catch(NullPointerException e) {
             String magId = null;
         }
@@ -63,7 +62,6 @@ public class ServletMesureMod extends HttpServlet {
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);
-            System.out.println(magId);
         } catch(NullPointerException e) {
             String magId = null;
         }
