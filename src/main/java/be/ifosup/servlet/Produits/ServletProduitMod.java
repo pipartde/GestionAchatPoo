@@ -78,7 +78,7 @@ public class ServletProduitMod extends HttpServlet {
 
             // modification du produit dans la BD
 
-            if (!proNom.equals("") && isGreaterZero(proQtt)) {
+            if (!proNom.equals("") && proQtt > 0) {
                 produitDAO.modifier(id, proNom, proCatId, proMesId, proQtt);
             }
 
@@ -97,11 +97,6 @@ public class ServletProduitMod extends HttpServlet {
             }
             request.getRequestDispatcher("vues/produits.jsp").forward(request, response);
         }
-    }
-
-
-    protected static boolean isGreaterZero(Double toCheck) {
-        return toCheck > 0;
     }
 
 }

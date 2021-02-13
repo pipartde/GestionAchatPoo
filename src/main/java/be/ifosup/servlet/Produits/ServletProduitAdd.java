@@ -67,12 +67,12 @@ public class ServletProduitAdd extends HttpServlet {
 
             // ajout du produit dans la BD
 
-            if (!proNom.equals("") && isGreaterZero(proQtt)) {
+            if (!proNom.equals("") && proQtt > 0) {
                 produitDAO.ajouter(new Produit(proNom, proCatId, proMesId, proQtt), magId);
             }
 
         } catch (NumberFormatException e) {
-            // todo : ajouter un message à retourner sur la .jsp en cas d'erreur??
+            // en cas d'insertion d'une quantité non chiffrée (par ex. "b")
         } finally {
             // redirection
             try {
@@ -86,11 +86,6 @@ public class ServletProduitAdd extends HttpServlet {
             }
             request.getRequestDispatcher("vues/produits.jsp?magId=" + magId).forward(request, response);
         }
-    }
-
-
-    protected static boolean isGreaterZero(Double toCheck) {
-        return toCheck > 0;
     }
 
 }
