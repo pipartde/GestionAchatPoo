@@ -51,7 +51,7 @@ public class ServletCategoriesMod extends HttpServlet {
 
         // Récupérations des champs
 
-        String catId = request.getParameter("catId");
+        Long catId = Long.parseLong(request.getParameter("catId"));
         String catNom = convertHtmlSpecialChars(request.getParameter("catNom")).trim();
         try {
             String magId = request.getParameter("mag_id");
@@ -63,7 +63,7 @@ public class ServletCategoriesMod extends HttpServlet {
         // Modification dans la DB
         
         if(!catNom.equals("")){
-            categoriesDAO.modifier(Long.parseLong(catId), catNom);}
+            categoriesDAO.modifier(catId, catNom);}
 
         // Redirection
 

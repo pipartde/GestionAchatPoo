@@ -33,10 +33,10 @@ public class ServletProduitSup extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // ce que le servlet envoie à la vue
         // récupération Id
-        String id = request.getParameter("id");
+        Long id = Long.parseLong(request.getParameter("id"));
         String magId = request.getParameter("magId");
-        // appel de la méthode de suppresion
-        produitDAO.supprimer(Long.parseLong(id));
+        // appel de la méthode de suppression
+        produitDAO.supprimer(id);
         // récupération des produits et retour a la bonne vue
         try {
             request.setAttribute("magId",magId);
