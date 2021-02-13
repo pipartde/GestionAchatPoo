@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static be.ifosup.librairies.functions.convertHtmlSpecialChars;
+
 @WebServlet(name = "ServletProduitAdd", urlPatterns = {"/produitAdd"})
 public class ServletProduitAdd extends HttpServlet {
 
@@ -91,31 +93,4 @@ public class ServletProduitAdd extends HttpServlet {
         return toCheck > 0;
     }
 
-
-    public static String convertHtmlSpecialChars(String source) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < source.length(); i++) {
-            char c = source.charAt(i);
-            switch (c) {
-                case '<':
-                    sb.append("&lt;");
-                    break;
-                case '>':
-                    sb.append("&gt;");
-                    break;
-                case '&':
-                    sb.append("&amp;");
-                    break;
-                case '"':
-                    sb.append("&quot;");
-                    break;
-                case '\'':
-                    sb.append("&apos;");
-                    break;
-                default:
-                    sb.append(c);
-            }
-        }
-        return sb.toString();
-    }
 }

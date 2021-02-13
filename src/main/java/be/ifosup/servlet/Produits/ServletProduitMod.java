@@ -13,6 +13,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static be.ifosup.librairies.functions.*;
+
 @WebServlet(name = "ServletProduitMod", urlPatterns = {"/produitMod"})
 public class ServletProduitMod extends HttpServlet {
 
@@ -32,7 +34,7 @@ public class ServletProduitMod extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //envoit des données a une page .jsp
+        //envoi des données a une page .jsp
         String id = request.getParameter("id");
         String magId = request.getParameter("magId");
         Produit produit = null;
@@ -102,30 +104,4 @@ public class ServletProduitMod extends HttpServlet {
         return toCheck > 0;
     }
 
-    public static String convertHtmlSpecialChars(String source) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < source.length(); i++) {
-            char c = source.charAt(i);
-            switch (c) {
-                case '<':
-                    sb.append("&lt;");
-                    break;
-                case '>':
-                    sb.append("&gt;");
-                    break;
-                case '&':
-                    sb.append("&amp;");
-                    break;
-                case '"':
-                    sb.append("&quot;");
-                    break;
-                case '\'':
-                    sb.append("&apos;");
-                    break;
-                default:
-                    sb.append(c);
-            }
-        }
-        return sb.toString();
-    }
 }

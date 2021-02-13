@@ -3,13 +3,14 @@ package be.ifosup.servlet.Categories;
 import be.ifosup.categories.Categories;
 import be.ifosup.categories.CategoriesDAO;
 import be.ifosup.dao.DAOFactory;
-import be.ifosup.magasin.Magasin;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+
+import static be.ifosup.librairies.functions.convertHtmlSpecialChars;
 
 @WebServlet(name = "ServletCategoriesMod", urlPatterns = "/mod-categorie")
 public class ServletCategoriesMod extends HttpServlet {
@@ -52,7 +53,7 @@ public class ServletCategoriesMod extends HttpServlet {
         // Récupérations des champs
 
         String catId = request.getParameter("catId");
-        String catNom = request.getParameter("catNom").trim();
+        String catNom = convertHtmlSpecialChars(request.getParameter("catNom")).trim();
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);

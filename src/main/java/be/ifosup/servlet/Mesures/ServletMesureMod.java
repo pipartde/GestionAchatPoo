@@ -10,6 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static be.ifosup.librairies.functions.convertHtmlSpecialChars;
+
 @WebServlet(name = "ServletMesureMod", urlPatterns = {"/mesures-mod"})
 
 public class ServletMesureMod extends HttpServlet {
@@ -57,7 +59,7 @@ public class ServletMesureMod extends HttpServlet {
         // Champs
 
         String mesId = request.getParameter("mesId");
-        String mesNom = request.getParameter("mesNom").trim();
+        String mesNom = convertHtmlSpecialChars(request.getParameter("mesNom")).trim();
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);

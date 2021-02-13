@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import static be.ifosup.librairies.functions.convertHtmlSpecialChars;
+
 @WebServlet(name = "ServletCategoriesAdd", urlPatterns = {"/add-categorie"})
 public class ServletCategoriesAdd extends HttpServlet {
     private CategoriesDAO categoriesDAO;
@@ -27,7 +29,7 @@ public class ServletCategoriesAdd extends HttpServlet {
 
 
         // Récupération des champs
-        String catNom = request.getParameter("catNom").trim();
+        String catNom = convertHtmlSpecialChars(request.getParameter("catNom")).trim();
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);

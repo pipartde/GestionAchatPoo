@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static be.ifosup.librairies.functions.convertHtmlSpecialChars;
+
 @WebServlet(name = "ServletMagasinAdd", urlPatterns = {"/addMagasin"})
 public class ServletMagasinAdd extends HttpServlet {
     private MagasinDAO magasinDAO;
@@ -28,7 +30,7 @@ public class ServletMagasinAdd extends HttpServlet {
 
         // récupération des valeurs du formulaire
 
-        String magNom = request.getParameter("magNom").trim();
+        String magNom = convertHtmlSpecialChars(request.getParameter("magNom")).trim();
 
         // ajout du magasin dans la BD
 
