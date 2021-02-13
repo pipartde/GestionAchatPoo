@@ -19,7 +19,13 @@ public class ServletCategories extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
         // Affichage de la liste des catégories
         try {
             request.setAttribute("categories", categoriesDAO.liste());
