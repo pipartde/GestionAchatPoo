@@ -83,7 +83,7 @@ public class ServletProduitMod extends HttpServlet {
             }
 
         } catch (NumberFormatException e) {
-            // todo : ajouter un message à retourner sur la .jsp en cas d'erreur??
+            // prévient une injection des user (au cas ou il bypass le imput type number)
         } finally {
             // redirection
             try {

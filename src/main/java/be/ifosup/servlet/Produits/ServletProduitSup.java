@@ -34,13 +34,13 @@ public class ServletProduitSup extends HttpServlet {
         // ce que le servlet envoie à la vue
         // récupération Id
         Long id = Long.parseLong(request.getParameter("id"));
-        String magId = request.getParameter("magId");
-        // appel de la méthode de suppression
+        Long magId = Long.parseLong(request.getParameter("magId"));
+        // appel de la méthode de suppresion
         produitDAO.supprimer(id);
         // récupération des produits et retour a la bonne vue
         try {
             request.setAttribute("magId",magId);
-            request.setAttribute("produits", produitDAO.liste(Long.parseLong(magId)));
+            request.setAttribute("produits", produitDAO.liste(magId));
             request.setAttribute("categories", categoriesDAO.liste());
             request.setAttribute("mesures", mesureDAO.liste());
             request.setAttribute("magasins", magasinDAO.liste());
