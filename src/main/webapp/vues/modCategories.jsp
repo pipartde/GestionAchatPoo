@@ -9,6 +9,7 @@
         <form action="mod-categorie" method="post">
             <label><input type="text" name="catNom" value="${categorie.catNom}"></label>
             <input type="hidden" name="catId" value="${categorie.id}">
+            <c:if test="${magId != null}"><input type="hidden" name="mag_id" value="${magId}"></c:if>
             <input type="submit" value="Modifier">
         </form>
     </main>

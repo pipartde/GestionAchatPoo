@@ -23,6 +23,13 @@ public class ServletCategoriesMod extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Récupérations des champs
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
         String catId = request.getParameter("catId");
         Categories categorie = null;
 
@@ -33,9 +40,9 @@ public class ServletCategoriesMod extends HttpServlet {
         }
 
         request.setAttribute("categorie", categorie);
-        request.getRequestDispatcher("vues/modCategories.jsp").forward(request,response);
+        request.getRequestDispatcher("vues/modCategories.jsp").forward(request, response);
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Formater en UTF-8
@@ -46,6 +53,13 @@ public class ServletCategoriesMod extends HttpServlet {
 
         String catId = request.getParameter("catId");
         String catNom = request.getParameter("catNom").trim();
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
 
         // Modification dans la DB
         

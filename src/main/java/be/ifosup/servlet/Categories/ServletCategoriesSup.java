@@ -25,6 +25,13 @@ public class ServletCategoriesSup extends HttpServlet {
 
         // Récupération des champs
         String id = request.getParameter("id");
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
 
 
         // Suppression dans la DB
