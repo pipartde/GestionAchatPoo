@@ -32,13 +32,13 @@ public class ServletMagasinMod extends HttpServlet {
 
         // récupération des valeurs du formulaire
 
-        String magId = request.getParameter("magId");
+        Long magId = Long.parseLong(request.getParameter("magId"));
         String magNom = convertHtmlSpecialChars(request.getParameter("magNom")).trim();
 
         // ajout du magasin dans la BD
 
         if(!magNom.equals("")){
-            magasinDAO.modifier(Long.parseLong(magId), magNom);}
+            magasinDAO.modifier(magId, magNom);}
 
         // redirection
 
@@ -54,10 +54,10 @@ public class ServletMagasinMod extends HttpServlet {
 
         // récupération Id
 
-        String magId = request.getParameter("magId");
+        Long magId = Long.parseLong(request.getParameter("magId"));
         Magasin magasin = null;
         try {
-            magasin = magasinDAO.recuperer(Long.parseLong(magId));
+            magasin = magasinDAO.recuperer(magId);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
