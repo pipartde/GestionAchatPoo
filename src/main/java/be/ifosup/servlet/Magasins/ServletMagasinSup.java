@@ -23,9 +23,9 @@ public class ServletMagasinSup extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // récupération Id
-        String id = request.getParameter("id");
+        Long id = Long.parseLong(request.getParameter("id"));
         // appel de la méthode de suppresion
-        magasinDAO.supprimer(Long.parseLong(id));
+        magasinDAO.supprimer(id);
         // récupération des magasins et retour a la bonne vue
         try {
             request.setAttribute("magasins", magasinDAO.liste());
