@@ -24,7 +24,7 @@ public class ServletMesureSup extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Récupération id
 
-        String mesId = request.getParameter("mesId");
+        Long mesId = Long.parseLong(request.getParameter("mesId"));
         try {
             String magId = request.getParameter("mag_id");
             request.setAttribute("magId", magId);
@@ -35,7 +35,7 @@ public class ServletMesureSup extends HttpServlet {
         // Suppression
 
         try {
-            mesureDAO.supprimer(Long.parseLong(mesId));
+            mesureDAO.supprimer(mesId);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

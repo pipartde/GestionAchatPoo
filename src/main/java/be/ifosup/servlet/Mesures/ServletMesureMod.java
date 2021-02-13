@@ -57,7 +57,7 @@ public class ServletMesureMod extends HttpServlet {
 
         // Champs
 
-        String mesId = request.getParameter("mesId");
+        Long mesId = Long.parseLong(request.getParameter("mesId"));
         String mesNom = convertHtmlSpecialChars(request.getParameter("mesNom")).trim();
         try {
             String magId = request.getParameter("mag_id");
@@ -70,7 +70,7 @@ public class ServletMesureMod extends HttpServlet {
 
         if(!mesNom.equals("")){
             try {
-                mesureDAO.modifier(Long.parseLong(mesId), mesNom);
+                mesureDAO.modifier(mesId, mesNom);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
