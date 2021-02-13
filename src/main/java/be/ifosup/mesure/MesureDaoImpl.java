@@ -34,6 +34,11 @@ public class MesureDaoImpl implements MesureDAO {
 
         preparedStatement.setLong(1, mesId);
         preparedStatement.executeUpdate();
+
+        preparedStatement = connection.prepareStatement("UPDATE produits SET proMesId = 1 WHERE proMesId = ?;");
+        preparedStatement.setLong(1, mesId);
+
+        preparedStatement.executeUpdate();
     }
 
     @Override
