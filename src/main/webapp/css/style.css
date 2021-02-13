@@ -42,7 +42,7 @@ footer p{
     background-color: rgba(250, 250, 250, .95);
     box-sizing: border-box;
     min-height: calc(100vh - 110px);
-    width: 800px;
+    width: 60%;
     margin: 20px auto;
     border-radius: 5px 50px;
     padding : 20px 40px;
@@ -67,7 +67,7 @@ nav{
 }
 
 nav div{
-    width: 800px;
+    max-width: 60%;
     margin: auto;
     font-size: 30px;
     padding-top : 15px;
