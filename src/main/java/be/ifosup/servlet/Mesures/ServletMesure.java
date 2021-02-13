@@ -27,6 +27,13 @@ public class ServletMesure extends HttpServlet {
             e.printStackTrace();
             throw new ServletException(e);
         }
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
         request.getRequestDispatcher("/vues/mesures.jsp").forward(request, response);
     }
 

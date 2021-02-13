@@ -25,6 +25,13 @@ public class ServletMesureSup extends HttpServlet {
         // Récupération id
 
         String mesId = request.getParameter("mesId");
+        try {
+            String magId = request.getParameter("mag_id");
+            request.setAttribute("magId", magId);
+            System.out.println(magId);
+        } catch(NullPointerException e) {
+            String magId = null;
+        }
 
         // Suppression
 
