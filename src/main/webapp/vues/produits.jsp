@@ -14,7 +14,7 @@
         <table>
             <thead>
             <tr>
-                <th>Catégorie &ensp;<a href="categories"><i class="fas fa-pen" title="modifier"></i></a></th>
+                <th>Catégorie &ensp;<a href="categories?mag_id=${magId}"><i class="fas fa-pen" title="modifier"></i></a></th>
                 <th>Produit</th>
                 <th>Quantitée</th>
                 <th>Mesure &ensp;<a href="mesures"><i class="fas fa-pen" title="modifier"></i></a></th>

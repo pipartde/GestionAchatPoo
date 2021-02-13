@@ -4,7 +4,7 @@
 <%@include file="../templates/navigation.jsp"%>
 <div class="container">
     <main>
-        <h1>Catégories</h1>
+        <h1>Catégories <c:if test="${magId != null}"><a href="produits?magId=${magId}"><i class="fas fa-angle-double-left" title="modifier"></i></a></c:if></h1>
         <table>
             <thead>
                 <tr>
@@ -21,8 +21,8 @@
                                 ${categorie.catNom}
                         </td>
                         <td>
-                            <a href="mod-categorie?catId=${categorie.id}"><i class="fas fa-pen" title="modifier"></i></a>
-                            <a href="sup-categorie?id=${categorie.id}" onclick="return confirm('Êtes vous sûr(e) ?');"><i class="fas fa-trash" title="supprimer"></i></a>
+                            <a href="mod-categorie?catId=${categorie.id}<c:if test="${magId != null}">&mag_id=${magId}</c:if>"><i class="fas fa-pen" title="modifier"></i></a>
+                            <a href="sup-categorie?id=${categorie.id}<c:if test="${magId != null}">&mag_id=${magId}</c:if>" onclick="return confirm('Êtes vous sûr(e) ?');"><i class="fas fa-trash" title="supprimer"></i></a>
                         </td>
                     </tr>
                 </c:if>
@@ -33,6 +33,7 @@
                 <tr>
                     <td>
                         <label><input type="text" name="catNom" placeholder="Nouvelle Catégorie" required></label>
+                        <c:if test="${magId != null}"><input type="hidden" name="mag_id" value="${magId}"></c:if>
                     </td>
 
                     <td>
